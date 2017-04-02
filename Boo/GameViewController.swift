@@ -29,6 +29,9 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+            
+            let value = UIInterfaceOrientation.landscapeLeft.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
         }
     }
 
@@ -37,11 +40,7 @@ class GameViewController: UIViewController {
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        return UIInterfaceOrientationMask.landscapeLeft
     }
 
     override func didReceiveMemoryWarning() {
