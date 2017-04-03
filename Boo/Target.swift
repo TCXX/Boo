@@ -110,10 +110,20 @@ class Skeletons: Target {
 }
 
 
-
-class Animated{
+class Bats: Target {
+    var name: String = ""
     var xv: Double = 0.0      //x-velocity
     var yv: Double = 0.0      //y-velocity
+    
+    var woodDamage: Int = 500
+    var woodMax: Int = 500
+    
+    
+    
+    init(pos: [Int])  {
+        
+        super.init(damage: woodDamage, lifeValue: woodMax, pos: pos)
+    }
     
     
     func isOnScreen() -> Bool {
@@ -121,21 +131,6 @@ class Animated{
         //CHECK IF THE OBJECT IS AT THE EDGE OF THE SCREEN, THEN CHANGE THE DIRECTION OF  VELOCITY
         
         return false
-    }
-    
-    
-}
-
-
-class Bats: Target {
-    var name: String = ""
-    
-    var woodDamage: Int = 500
-    var woodMax: Int = 500
-    
-    init(pos: [Int])  {
-        
-        super.init(damage: woodDamage, lifeValue: woodMax, pos: pos)
     }
     
     
