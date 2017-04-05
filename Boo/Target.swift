@@ -31,11 +31,15 @@ class Target {
     
     
     func isHit(items: String) -> Bool {               //the String for items is a place holder. It should be changed to THROWABLE later
+        
         hitCalled = true
         
         //CHECK PHYSICS IN ANOTHER FUNCTION, THEN CALL isHit
         
         switch(items){
+            
+            //IN THE THROWABLE CLASSES, IF WE SPECIFY A DAMAGE_POWER FOR EACH ITEM (SHOWN BELOW AS 0.2, 0.3, and 0.9), WE WON'T NEED THE SWITCH OR IF STATEMENTS!
+            
             case "candy":
                 damageValue = damageValue - (Int)(0.20 * (Double)(damageValue))
                 return true
