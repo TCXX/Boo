@@ -12,7 +12,7 @@ import UIKit
 
 class Target {
     
-    
+    var hitCalled: Bool = false
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
     var position: [Int] = [0, 0]
@@ -29,7 +29,7 @@ class Target {
     }
     
     func isHit(items: String) -> Bool {               //the String for items is a place holder. It should be changed to THROWABLE later
-        
+        hitCalled = true
         switch(items){
             case "candy":
                 damageValue = damageValue - (Int)(0.20 * (Double)(damageValue))
@@ -69,8 +69,13 @@ class Woods: Target {
     
     
     func update(){
+        if(hitCalled){
+            
+            //update display of score and damage values for wood
+            
+            hitCalled = false
+        }
         
-        //update display of score and damage values for wood
         
         
     }
@@ -91,17 +96,12 @@ class Pumpkins: Target {
     
     func update(){
         
-        //update display of score and damage values for pumpkin
+        if(hitCalled){
+            
+            //update display of score and damage values for pumpkin
 
-        
-        
-        
-//        if (isHit()){
-//            
-//            pumpkinDamage = pumpkinDamage - (Int)(0.50 * (Double)(pumpkinDamage))
-//            
-//        }
-        
+            hitCalled = false
+        }
         
     }
     
@@ -120,9 +120,12 @@ class Vampires: Target {
     }
     
     func update(){
-        
-        //update display of score and damage values for vampire
-        
+        if(hitCalled){
+            
+            //update display of score and damage values for vampire
+            
+            hitCalled = false
+        }
         
     }
 }
@@ -141,9 +144,12 @@ class Skeletons: Target {
     
     
     func update(){
+        if(hitCalled){
         
-        //update display of score and damage values for skeleton
+            //update display of score and damage values for skeleton
         
+            hitCalled = false
+        }
         
     }
     
@@ -155,8 +161,8 @@ class Bats: Target {
     var xv: Double = 0.0      //x-velocity
     var yv: Double = 0.0      //y-velocity
     
-    var batDamage: Int = 100
-    var batMax: Int = 100
+    var batDamage: Int = 1000
+    var batMax: Int = 1000
     
     
     
@@ -173,10 +179,39 @@ class Bats: Target {
         return false
     }
     
+    func flyBat(thePos: [Int]){
+        while(isOnScreen()){
+            
+            //DO MULTIPLE DRAWS FOR ANIMATION
+            
+        }
+        
+    }
+    
+    func flyingAnimation(){
+        if(isOnScreen()){
+           
+            flyBat(thePos: position)
+            
+            
+        }else{
+            xv = -xv
+            yv = -yv
+            flyBat(thePos: position)
+        }
+        
+        
+        
+    }
+    
     func update(){
         
-        //update display of score and damage values for bats
+        if(hitCalled){
+            
+            //update display of score and damage values for bats
         
+            hitCalled = false
+        }
         
     }
     
