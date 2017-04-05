@@ -28,8 +28,13 @@ class Target {
         return position
     }
     
+    
+    
     func isHit(items: String) -> Bool {               //the String for items is a place holder. It should be changed to THROWABLE later
         hitCalled = true
+        
+        //CHECK PHYSICS IN ANOTHER FUNCTION, THEN CALL isHit
+        
         switch(items){
             case "candy":
                 damageValue = damageValue - (Int)(0.20 * (Double)(damageValue))
@@ -47,7 +52,10 @@ class Target {
                 break
             
         }
-        //add some physics
+        
+        
+        
+    
         
         return false;
     }
