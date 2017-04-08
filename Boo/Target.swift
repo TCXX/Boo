@@ -29,41 +29,27 @@ class Target {
     }
     
     
+    func isDead() {
+        
+        //MAKE TARGET DISAPPEAR FROM SCREEN (WITH A CLOUD OF SMOKE)
+        
+    }
     
-    func isHit(items: String) -> Bool {               //the String for items is a place holder. It should be changed to THROWABLE later
+    func isHit(items: Throwable){
         
         hitCalled = true
         
         //CHECK PHYSICS IN ANOTHER FUNCTION, THEN CALL isHit
         
-        switch(items){
-            
-            //IN THE THROWABLE CLASSES, IF WE SPECIFY A DAMAGE_POWER FOR EACH ITEM (SHOWN BELOW AS 0.2, 0.3, and 0.9), WE WON'T NEED THE SWITCH OR IF STATEMENTS!
-            
-            case "candy":
-                damageValue = damageValue - (Int)(0.20 * (Double)(damageValue))
-                return true
-            
-            case "milk":
-                damageValue = damageValue - (Int)(0.30 * (Double)(damageValue))
-                return true
-            
-            case "bomb":
-                damageValue = damageValue - (Int)(0.90 * (Double)(damageValue))
-                return true
-            
-            default:
-                break
-            
+        if(damageValue > 0){
+            damageValue = damageValue - (Int)(items.hitImpact * (Double)(damageValue))
         }
         
-        
-        
+        if(damageValue <= 0){
+            self.isDead();
+        }
     
-        
-        return false;
     }
-    
 }
 
 
