@@ -8,32 +8,33 @@
 
 import Foundation
 import UIKit
+import SpriteKit
 
 
-class Target {
+class Target: SKSpriteNode{
     
     var hitCalled: Bool = false
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
-    var position: [Int] = [0, 0]
+    var thePosition: [Int] = [0, 0]
+    var isDead: Bool = false;
     
     init(damage: Int, lifeValue: Int, pos: [Int]){
         damageValue = damage
         maxDamageValue = lifeValue
-        position = pos
+        thePosition = pos
         
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func getPosition() -> [Int] {
-        return position
+        return thePosition
     }
     
     
-    func isDead() {
-        
-        //MAKE TARGET DISAPPEAR FROM SCREEN (WITH A CLOUD OF SMOKE)
-        
-    }
     
     func isHit(items: Throwable){
         
@@ -46,7 +47,7 @@ class Target {
         }
         
         if(damageValue <= 0){
-            self.isDead();
+            removeFromParent();
         }
     
     }
@@ -55,7 +56,7 @@ class Target {
 
 
 class Woods: Target {
-    var name: String = ""
+    var theName: String = ""
     
     var woodDamage: Int = 500
     var woodMax: Int = 500
@@ -63,6 +64,10 @@ class Woods: Target {
     init(pos: [Int])  {
         
         super.init(damage: woodDamage, lifeValue: woodMax, pos: pos)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -82,7 +87,7 @@ class Woods: Target {
 
 
 class Pumpkins: Target {
-    var name: String = ""
+    var theName: String = ""
     
     var pumpkinDamage: Int = 100
     var pumpkinMax: Int = 100
@@ -90,6 +95,10 @@ class Pumpkins: Target {
     init(pos: [Int])  {
         
         super.init(damage: pumpkinDamage, lifeValue: pumpkinMax, pos: pos)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func update(){
@@ -107,7 +116,7 @@ class Pumpkins: Target {
 
 
 class Vampires: Target {
-    var name: String = ""
+    var theName: String = ""
     
     var vampireDamage: Int = 300
     var vampireMax: Int = 300
@@ -115,6 +124,10 @@ class Vampires: Target {
     init(pos: [Int])  {
         
         super.init(damage: vampireDamage, lifeValue: vampireMax, pos: pos)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func update(){
@@ -130,7 +143,7 @@ class Vampires: Target {
 
 
 class Skeletons: Target {
-    var name: String = ""
+    var theName: String = ""
     
     var skeletonDamage: Int = 50
     var skeletonMax: Int = 50
@@ -138,6 +151,10 @@ class Skeletons: Target {
     init(pos: [Int])  {
         
         super.init(damage: skeletonDamage, lifeValue: skeletonMax, pos: pos)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -155,7 +172,7 @@ class Skeletons: Target {
 
 
 class Bats: Target {
-    var name: String = ""
+    var theName: String = ""
     var xv: Double = 0.0      //x-velocity
     var yv: Double = 0.0      //y-velocity
     
@@ -167,6 +184,10 @@ class Bats: Target {
     init(pos: [Int])  {
         
         super.init(damage: batDamage, lifeValue: batMax, pos: pos)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -189,13 +210,13 @@ class Bats: Target {
     func flyingAnimation(){
         if(isOnScreen()){
            
-            flyBat(thePos: position)
+            flyBat(thePos: thePosition)
             
             
         }else{
             xv = -xv
             yv = -yv
-            flyBat(thePos: position)
+            flyBat(thePos: thePosition)
         }
         
         
