@@ -36,8 +36,11 @@ class Throwable: SKSpriteNode {
             case "bomb":
                 hitImpact = 0.9
                 break
-        default: break
+            default: break
         }
+        
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size) //set container for the throwable object
+        self.physicsBody?.affectedByGravity = true //Bc subject to gravity, throwable object can fall
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,7 +59,7 @@ class Throwable: SKSpriteNode {
         coordinates = values
     }
     
-    func throwObject(ph: UIBezierPath) { //actual throwing with occur in main Game Scene class (using touches)
+    func throwObject(ph: UIBezierPath) { //actual throwing will occur in main Game Scene class (using touches)
         self.path = ph.cgPath
     }
     
