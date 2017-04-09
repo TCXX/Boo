@@ -98,8 +98,7 @@ class Game {
 }
 
 
-//PUT THIS CLASS IN THE MAPS FILE AND 
-
+//Used in Map class
 class Level{
     
     //villains
@@ -120,9 +119,10 @@ class Level{
     
         switch theLevel {
         case 1 :
-            set(theWood: 1, thePumpkin: 1,theVampire: 1,theSkeleton: 1,theBats: 1,theCandy: 1,theMilk: 1,theBomb: 1);
+            set(theWood: 1, thePumpkin: 1,theVampire: 1,theSkeleton: 1,theBats: 1,theCandy: 1,theMilk: 1,theBomb: 1)
+            break
         default:
-            <#code#>
+            break
         }
     }
     
