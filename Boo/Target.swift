@@ -18,16 +18,20 @@ class Target: SKSpriteNode{
     var maxDamageValue: Int = 0
     var thePosition: [Int] = [0, 0]
     var isDead: Bool = false;
+    var theName: String = ""
     
     init(damage: Int, lifeValue: Int, pos: [Int]){
         damageValue = damage
         maxDamageValue = lifeValue
         thePosition = pos
-        
+        let texture = SKTexture(imageNamed: theName)
+        super.init(texture: texture, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
+
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+       // fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     func getPosition() -> [Int] {
@@ -56,7 +60,7 @@ class Target: SKSpriteNode{
 
 
 class Woods: Target {
-    var theName: String = ""
+    //var theName: String = ""
     
     var woodDamage: Int = 500
     var woodMax: Int = 500
@@ -87,7 +91,7 @@ class Woods: Target {
 
 
 class Pumpkins: Target {
-    var theName: String = ""
+ //   var theName: String = ""
     
     var pumpkinDamage: Int = 100
     var pumpkinMax: Int = 100
@@ -116,7 +120,7 @@ class Pumpkins: Target {
 
 
 class Vampires: Target {
-    var theName: String = ""
+   // var theName: String = ""
     
     var vampireDamage: Int = 300
     var vampireMax: Int = 300
@@ -143,7 +147,7 @@ class Vampires: Target {
 
 
 class Skeletons: Target {
-    var theName: String = ""
+  //  var theName: String = ""
     
     var skeletonDamage: Int = 50
     var skeletonMax: Int = 50
@@ -172,7 +176,7 @@ class Skeletons: Target {
 
 
 class Bats: Target {
-    var theName: String = ""
+  //  var theName: String = ""
     var xv: Double = 0.0      //x-velocity
     var yv: Double = 0.0      //y-velocity
     
