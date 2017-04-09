@@ -17,7 +17,7 @@ class Target: SKSpriteNode{
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
     var thePosition: [Int] = [0, 0]
-    var isDead: Bool = false;
+    
     var theName: String = ""
     
     init(damage: Int, lifeValue: Int, pos: [Int]){
@@ -59,7 +59,7 @@ class Target: SKSpriteNode{
 
 
 
-class Woods: Target {
+class Wood: Target {
     //var theName: String = ""
     
     var woodDamage: Int = 500
@@ -90,7 +90,7 @@ class Woods: Target {
 }
 
 
-class Pumpkins: Target {
+class Pumpkin: Target {
  //   var theName: String = ""
     
     var pumpkinDamage: Int = 100
@@ -119,7 +119,7 @@ class Pumpkins: Target {
 }
 
 
-class Vampires: Target {
+class Vampire: Target {
    // var theName: String = ""
     
     var vampireDamage: Int = 300
@@ -146,7 +146,7 @@ class Vampires: Target {
 }
 
 
-class Skeletons: Target {
+class Skeleton: Target {
   //  var theName: String = ""
     
     var skeletonDamage: Int = 50
@@ -175,7 +175,7 @@ class Skeletons: Target {
 }
 
 
-class Bats: Target {
+class Bat: Target {
   //  var theName: String = ""
     var xv: Double = 0.0      //x-velocity
     var yv: Double = 0.0      //y-velocity
