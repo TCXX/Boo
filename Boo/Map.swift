@@ -20,7 +20,8 @@ class Map {
         let theVamps = theLevel.numVampire
         for i in 0..<theVamps{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE
+            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
+            //MAYBE USE MATH.RANDOM?
             
             vampArray[i] = Vampire(pos: [0,0])
         }
@@ -28,32 +29,36 @@ class Map {
         let thePumps = theLevel.numPumpkin
         for i in 0..<thePumps{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE
-
+            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
+            //MAYBE USE MATH.RANDOM?
+            
             pumpkinArray[i] = Pumpkin(pos: [0,0])
         }
         
         let theBats = theLevel.numBats
         for i in 0..<theBats{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE
-
+            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
+            //MAYBE USE MATH.RANDOM?
+            
             batsArray[i] = Bat(pos: [0,0])
         }
         
         let theWoods = theLevel.numWood
         for i in 0..<theWoods{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE
-
+            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
+            //MAYBE USE MATH.RANDOM?
+            
             woodArray[i] = Wood(pos: [0,0])
         }
         
         let theSkels = theLevel.numSkeleton
         for i in 0..<theSkels{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE
-
+            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
+            //MAYBE USE MATH.RANDOM?
+            
             skeletonArray[i] = Skeleton(pos: [0,0])
         }
         
