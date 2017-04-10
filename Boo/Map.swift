@@ -10,11 +10,8 @@ import Foundation
 
 class Map {
     
-    var vampArray = [Vampire]()
-    var skeletonArray = [Skeleton]()
-    var batsArray = [Bat]()
-    var pumpkinArray = [Pumpkin]()
-    var woodArray = [Wood]()
+    var targets = [Target]()
+    var throwables = [Throwable]()
     
     func getJSON(_ url:String) -> JSON{
         if let url = URL(string:url){
@@ -28,68 +25,19 @@ class Map {
             return JSON.null
         }
     }
-    let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
-      let dict = json["Target"]
     
-    init(theLevel : Level){
-        let theVamps = theLevel.numVampire
-        for i in 0..<theVamps{
+    
+    init(currentLevel: Int){
+        let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level\(currentLevel)")
+        
+        for result in json["Tatget"].arrayValue{
           
-            let array = dict["Vampire\(i)"]
-           
-             let pos_x = array["pos_x"]
-             let pos_y = array["pos_y"]
-           
-            vampArray.append(Vampire(pos: [pos_x,pos_y]))
-        }
-        
-        let thePumps = theLevel.numPumpkin
-        for i in 0..<thePumps{
+            let type = result["Type"].stringValue
+            let pos_x = result["pos_x"].floatValue
+            let pos_y = result["pos_Y"].floatValue
             
-            let array = dict["Pumpkin\(i)"]
-            
-            let pos_x = array["pos_x"]
-            let pos_y = array["pos_y"]
-            
-            
-            pumpkinArray.append(Pumpkin(pos: [pos_x,pos_y]))
-        }
-        
-        let theBats = theLevel.numBats
-        for i in 0..<theBats{
-          
-            let array = dict["Bat\(i)"]
-            
-            let pos_x = array["pos_x"]
-            let pos_y = array["pos_y"]
-            
-            
-            batsArray.append(Bat(pos: [pos_x,pos_y]))
-        }
-        
-        let theWoods = theLevel.numWood
-        for i in 0..<theWoods{
-            
-        
-            let array = dict["Wood\(i)"]
-            
-            let pos_x = array["pos_x"]
-            let pos_y = array["pos_y"]
-            
-            woodArray.append(Wood(pos: [pos_x,pos_y]))
-        }
-        
-        let theSkels = theLevel.numSkeleton
-        for i in 0..<theSkels{
-            
-        
-            let array = dict["Skeleton\(i)"]
-            
-            let pos_x = array["pos_x"]
-            let pos_y = array["pos_y"]
-            
-            
-            skeletonArray.append(Skeleton(pos: [pos_x,pos_y]))
+            //targets.append(something)
+
         }
         
         
