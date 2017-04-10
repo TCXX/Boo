@@ -11,7 +11,7 @@ import Foundation
 class Map {
     
     var targets = [Target]()
-    var throwables = [Throwable]()
+    var throwables = [String]()
     
     func getJSON(_ url:String) -> JSON{
         if let url = URL(string:url){
@@ -34,13 +34,34 @@ class Map {
           
             let type = result["Type"].stringValue
             let pos_x = result["pos_x"].floatValue
-            let pos_y = result["pos_Y"].floatValue
+            let pos_y = result["pos_y"].floatValue
             
-            //BASED ON WHAT TYPE (IE. SWITCH CASE), CREATE CORRESPONDING SUB-CLASS OF TARTGETS
             
-            //targets.append(WOOD(PARAMETERS))
-
+            switch type{
+            case "Wood" : targets.append(Wood(pos:[pos_x,pos_y]))
+                           break
+            case "Skeleton": targets.append(Skeleton(pos:[pos_x,pos_y]))
+                           break
+            case "Vampire": targets.append(Vampire(pos:[pos_x,pos_y]))
+                           break
+            case "Pumpkin": targets.append(Pumpkin(pos:[pos_x,pos_y]))
+                           break
+            case "Bat": targets.append(Bat(pos:[pos_x,pos_y]))
+                          break
+            default: break
+                
+            }
+            
+            
         }
+        for result in json["Throwable"].arrayValue{
+            
+            throwables.append(result.string!)
+            
+            
+        }
+        
+
         
         
     }

@@ -16,11 +16,11 @@ class Target: SKSpriteNode{
     var hitCalled: Bool = false
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
-    var thePosition: [Int] = [0, 0]
+    var thePosition: [Float] = [0, 0]
     
     var theName: String = ""
     
-    init(damage: Int, lifeValue: Int, pos: [Int]){
+    init(damage: Int, lifeValue: Int, pos: [Float]){
         damageValue = damage
         maxDamageValue = lifeValue
         thePosition = pos
@@ -34,7 +34,7 @@ class Target: SKSpriteNode{
         super.init(coder: aDecoder)
     }
     
-    func getPosition() -> [Int] {
+    func getPosition() -> [Float] {
         return thePosition
     }
     
@@ -65,7 +65,7 @@ class Wood: Target {
     var woodDamage: Int = 500
     var woodMax: Int = 500
     
-    init(pos: [Int])  {
+    init(pos: [Float])  {
         
         super.init(damage: woodDamage, lifeValue: woodMax, pos: pos)
     }
@@ -96,7 +96,7 @@ class Pumpkin: Target {
     var pumpkinDamage: Int = 100
     var pumpkinMax: Int = 100
     
-    init(pos: [Int])  {
+    init(pos: [Float])  {
         
         super.init(damage: pumpkinDamage, lifeValue: pumpkinMax, pos: pos)
     }
@@ -125,7 +125,7 @@ class Vampire: Target {
     var vampireDamage: Int = 300
     var vampireMax: Int = 300
     
-    init(pos: [Int])  {
+    init(pos: [Float])  {
         
         super.init(damage: vampireDamage, lifeValue: vampireMax, pos: pos)
     }
@@ -152,7 +152,7 @@ class Skeleton: Target {
     var skeletonDamage: Int = 50
     var skeletonMax: Int = 50
     
-    init(pos: [Int])  {
+    init(pos: [Float])  {
         
         super.init(damage: skeletonDamage, lifeValue: skeletonMax, pos: pos)
     }
@@ -185,7 +185,7 @@ class Bat: Target {
     
     
     
-    init(pos: [Int])  {
+    init(pos: [Float])  {
         
         super.init(damage: batDamage, lifeValue: batMax, pos: pos)
     }
@@ -202,7 +202,7 @@ class Bat: Target {
         return false
     }
     
-    func flyBat(thePos: [Int]){
+    func flyBat(thePos: [Float]){
         while(isOnScreen()){
             
             //DO MULTIPLE DRAWS FOR ANIMATION
