@@ -43,7 +43,7 @@ class Map {
         }
         
         let thePumps = theLevel.numPumpkin
-        for _ in 0..<thePumps{
+        for i in 0..<thePumps{
             
             let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
             let dict = json["Target"]
@@ -57,7 +57,7 @@ class Map {
         }
         
         let theBats = theLevel.numBats
-        for _ in 0..<theBats{
+        for i in 0..<theBats{
             
             let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
             let dict = json["Target"]
@@ -71,7 +71,7 @@ class Map {
         }
         
         let theWoods = theLevel.numWood
-        for _ in 0..<theWoods{
+        for i in 0..<theWoods{
             
             let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
             let dict = json["Target"]
@@ -84,7 +84,7 @@ class Map {
         }
         
         let theSkels = theLevel.numSkeleton
-        for _ in 0..<theSkels{
+        for i in 0..<theSkels{
             
             let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
             let dict = json["Target"]
