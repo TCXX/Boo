@@ -119,7 +119,7 @@ class Level{
     
         switch theLevel {
         case 1 :
-            set(theWood: 1, thePumpkin: 1,theVampire: 1,theSkeleton: 1,theBats: 1,theCandy: 1,theMilk: 1,theBomb: 1)
+            set(theWood: 6, thePumpkin: 3,theVampire: 2,theSkeleton: 2,theBats: 3,theCandy: 1,theMilk: 1,theBomb: 1)
             break
         default:
             break

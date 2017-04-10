@@ -16,50 +16,85 @@ class Map {
     var pumpkinArray = [Pumpkin]()
     var woodArray = [Wood]()
     
+    func getJSON(_ url:String) -> JSON{
+        if let url = URL(string:url){
+            if let data = try? Data(contentsOf: url) {
+                let json = JSON(data: data)
+                return json
+            }else{
+                return JSON.null
+            }
+        }else{
+            return JSON.null
+        }
+    }
+    
     init(theLevel : Level){
         let theVamps = theLevel.numVampire
-        for _ in 0..<theVamps{
-            
-            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
-            //MAYBE USE MATH.RANDOM?
-            
-            vampArray.append(Vampire(pos: [0,0]))
+        for i in 0..<theVamps{
+            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
+            let dict = json["Target"]
+            let array = dict["Vampire\(i)"]
+           
+             let pos_x = array["pos_x"]
+             let pos_y = array["pos_y"]
+           
+            vampArray.append(Vampire(pos: [pos_x,pos_y]))
         }
         
         let thePumps = theLevel.numPumpkin
         for _ in 0..<thePumps{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
-            //MAYBE USE MATH.RANDOM?
+            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
+            let dict = json["Target"]
+            let array = dict["Pumpkin\(i)"]
             
-            pumpkinArray.append(Pumpkin(pos: [0,0]))
+            let pos_x = array["pos_x"]
+            let pos_y = array["pos_y"]
+            
+            
+            pumpkinArray.append(Pumpkin(pos: [pos_x,pos_y]))
         }
         
         let theBats = theLevel.numBats
         for _ in 0..<theBats{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
-            //MAYBE USE MATH.RANDOM?
+            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
+            let dict = json["Target"]
+            let array = dict["Bat\(i)"]
             
-            batsArray.append(Bat(pos: [0,0]))
+            let pos_x = array["pos_x"]
+            let pos_y = array["pos_y"]
+            
+            
+            batsArray.append(Bat(pos: [pos_x,pos_y]))
         }
         
         let theWoods = theLevel.numWood
         for _ in 0..<theWoods{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
-            //MAYBE USE MATH.RANDOM?
+            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
+            let dict = json["Target"]
+            let array = dict["Wood\(i)"]
             
-            woodArray.append(Wood(pos: [0,0]))
+            let pos_x = array["pos_x"]
+            let pos_y = array["pos_y"]
+            
+            woodArray.append(Wood(pos: [pos_x,pos_y]))
         }
         
         let theSkels = theLevel.numSkeleton
         for _ in 0..<theSkels{
             
-            //SET THE POSITION COORDINATES FOR EACH OF THESE. [0, 0] IS JUST A PLACEHOLDER
-            //MAYBE USE MATH.RANDOM?
+            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
+            let dict = json["Target"]
+            let array = dict["Skeleton\(i)"]
             
-            skeletonArray.append(Skeleton(pos: [0,0]))
+            let pos_x = array["pos_x"]
+            let pos_y = array["pos_y"]
+            
+            
+            skeletonArray.append(Skeleton(pos: [pos_x,pos_y]))
         }
         
         

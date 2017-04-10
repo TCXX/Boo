@@ -22,6 +22,7 @@
 		229B9CC91E9049D1003223A5 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CC81E9049D1003223A5 /* Target.swift */; };
 		229B9CCB1E9049F1003223A5 /* Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CCA1E9049F1003223A5 /* Physics.swift */; };
 		229B9CD01E904A5E003223A5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CCF1E904A5E003223A5 /* Map.swift */; };
+		8F4B16BE1E9B4A1E00DB0F32 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4B16BD1E9B4A1E00DB0F32 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		229B9CC81E9049D1003223A5 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		229B9CCA1E9049F1003223A5 /* Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
 		229B9CCF1E904A5E003223A5 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		8F4B16BD1E9B4A1E00DB0F32 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				229B9CCF1E904A5E003223A5 /* Map.swift */,
 				229B9CC61E9049B4003223A5 /* Throwable.swift */,
+				8F4B16BD1E9B4A1E00DB0F32 /* SwiftyJSON.swift */,
 				229B9CC81E9049D1003223A5 /* Target.swift */,
 				229B9CC41E904984003223A5 /* Game.swift */,
 			);
@@ -308,6 +311,7 @@
 				229B9C991E904868003223A5 /* GameViewController.swift in Sources */,
 				229B9C911E904868003223A5 /* AppDelegate.swift in Sources */,
 				229B9CC51E904984003223A5 /* Game.swift in Sources */,
+				8F4B16BE1E9B4A1E00DB0F32 /* SwiftyJSON.swift in Sources */,
 				229B9CCB1E9049F1003223A5 /* Physics.swift in Sources */,
 				229B9CC71E9049B4003223A5 /* Throwable.swift in Sources */,
 			);
