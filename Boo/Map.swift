@@ -30,13 +30,15 @@ class Map {
     init(currentLevel: Int){
         let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level\(currentLevel)")
         
-        for result in json["Tatget"].arrayValue{
+        for result in json["Target"].arrayValue{
           
             let type = result["Type"].stringValue
             let pos_x = result["pos_x"].floatValue
             let pos_y = result["pos_Y"].floatValue
             
-            //targets.append(something)
+            //BASED ON WHAT TYPE (IE. SWITCH CASE), CREATE CORRESPONDING SUB-CLASS OF TARTGETS
+            
+            //targets.append(WOOD(PARAMETERS))
 
         }
         
