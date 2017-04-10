@@ -28,12 +28,13 @@ class Map {
             return JSON.null
         }
     }
+    let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
+      let dict = json["Target"]
     
     init(theLevel : Level){
         let theVamps = theLevel.numVampire
         for i in 0..<theVamps{
-            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
-            let dict = json["Target"]
+          
             let array = dict["Vampire\(i)"]
            
              let pos_x = array["pos_x"]
@@ -45,8 +46,6 @@ class Map {
         let thePumps = theLevel.numPumpkin
         for i in 0..<thePumps{
             
-            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
-            let dict = json["Target"]
             let array = dict["Pumpkin\(i)"]
             
             let pos_x = array["pos_x"]
@@ -58,9 +57,7 @@ class Map {
         
         let theBats = theLevel.numBats
         for i in 0..<theBats{
-            
-            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
-            let dict = json["Target"]
+          
             let array = dict["Bat\(i)"]
             
             let pos_x = array["pos_x"]
@@ -73,8 +70,7 @@ class Map {
         let theWoods = theLevel.numWood
         for i in 0..<theWoods{
             
-            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
-            let dict = json["Target"]
+        
             let array = dict["Wood\(i)"]
             
             let pos_x = array["pos_x"]
@@ -86,8 +82,7 @@ class Map {
         let theSkels = theLevel.numSkeleton
         for i in 0..<theSkels{
             
-            let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1")
-            let dict = json["Target"]
+        
             let array = dict["Skeleton\(i)"]
             
             let pos_x = array["pos_x"]
