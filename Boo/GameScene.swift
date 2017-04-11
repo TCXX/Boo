@@ -8,7 +8,6 @@
 //  http://olivesoft.co.uk/post/Creating-a-slingshot-game-using-Swift-and-SpriteKit/
 
 import SpriteKit
-import GameplayKit
 
 class GameScene: SKScene {
     var projectile: SKSpriteNode!
@@ -28,15 +27,19 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         backgroundColor = UIColor.brown
         
-        physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.gravity = GameScene.gravity
-        physicsWorld.speed = 0.5
+        physicsWorld.speed = 1.0
         
         setupSlingshot()
         setupBoxes()
     }
     
     func setupSlingshot() {
+        
+        let slingshot1 = SKSpriteNode(imageNamed: "shot0.png")
+        slingshot1.position = GameScene.projectileRestPosition
+        addChild(slingshot1)
         
         projectile = SKSpriteNode(imageNamed: "candy.png")
         projectile.position = GameScene.projectileRestPosition
@@ -48,9 +51,9 @@ class GameScene: SKScene {
     }
     
     func setupBoxes() {
-        let box = Box(imageNamed: "candy.png")
-        box.integrity = 2
-        box.position = CGPoint(x: 100, y: 100)
+        let box = SKSpriteNode(imageNamed: "pumpkin.png")
+        box.setScale(0.33)
+        box.position = CGPoint(x: 100, y: 50)
         box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
         addChild(box)
     }
@@ -128,18 +131,4 @@ class GameScene: SKScene {
         }
     }
     
-}
-
-class Box: SKSpriteNode {
-    var integrity: Int = 2 {
-        didSet {
-            if integrity > 2 {
-                integrity = 2
-            }
-            if integrity < 0 {
-                removeFromParent()
-            }
-            texture = SKTexture(imageNamed: "box_\(integrity)")
-        }
-    }
 }
