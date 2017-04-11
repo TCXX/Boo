@@ -16,10 +16,8 @@
 		229B9CA11E904868003223A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229B9C9F1E904868003223A5 /* LaunchScreen.storyboard */; };
 		229B9CAC1E904868003223A5 /* BooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CAB1E904868003223A5 /* BooTests.swift */; };
 		229B9CB71E904868003223A5 /* BooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CB61E904868003223A5 /* BooUITests.swift */; };
-		229B9CC51E904984003223A5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CC41E904984003223A5 /* Game.swift */; };
 		229B9CC71E9049B4003223A5 /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CC61E9049B4003223A5 /* Throwable.swift */; };
 		229B9CC91E9049D1003223A5 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CC81E9049D1003223A5 /* Target.swift */; };
-		229B9CCB1E9049F1003223A5 /* Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CCA1E9049F1003223A5 /* Physics.swift */; };
 		229B9CD01E904A5E003223A5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CCF1E904A5E003223A5 /* Map.swift */; };
 		229B9CD51E9B43A2003223A5 /* pumpkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 229B9CD21E9B43A2003223A5 /* pumpkin.png */; };
 		229B9CD61E9B43A2003223A5 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 229B9CD31E9B43A2003223A5 /* background1.png */; };
@@ -61,10 +59,8 @@
 		229B9CB21E904868003223A5 /* BooUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BooUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		229B9CB61E904868003223A5 /* BooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooUITests.swift; sourceTree = "<group>"; };
 		229B9CB81E904868003223A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		229B9CC41E904984003223A5 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		229B9CC61E9049B4003223A5 /* Throwable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Throwable.swift; sourceTree = "<group>"; };
 		229B9CC81E9049D1003223A5 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
-		229B9CCA1E9049F1003223A5 /* Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
 		229B9CCF1E904A5E003223A5 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		229B9CD21E9B43A2003223A5 /* pumpkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pumpkin.png; path = ../../../Downloads/pumpkin.png; sourceTree = "<group>"; };
 		229B9CD31E9B43A2003223A5 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background1.png; path = ../../../Downloads/background1.png; sourceTree = "<group>"; };
@@ -121,7 +117,6 @@
 		229B9C8F1E904868003223A5 /* Boo */ = {
 			isa = PBXGroup;
 			children = (
-				229B9CD11E904A6D003223A5 /* Core */,
 				229B9CCC1E904A0B003223A5 /* Model */,
 				229B9C901E904868003223A5 /* AppDelegate.swift */,
 				229B9C921E904868003223A5 /* GameScene.sks */,
@@ -161,17 +156,8 @@
 				229B9CCF1E904A5E003223A5 /* Map.swift */,
 				229B9CC61E9049B4003223A5 /* Throwable.swift */,
 				229B9CC81E9049D1003223A5 /* Target.swift */,
-				229B9CC41E904984003223A5 /* Game.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		229B9CD11E904A6D003223A5 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				229B9CCA1E9049F1003223A5 /* Physics.swift */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		229B9CD81E9B43B2003223A5 /* pics */ = {
@@ -330,9 +316,7 @@
 				229B9CD01E904A5E003223A5 /* Map.swift in Sources */,
 				229B9C991E904868003223A5 /* GameViewController.swift in Sources */,
 				229B9C911E904868003223A5 /* AppDelegate.swift in Sources */,
-				229B9CC51E904984003223A5 /* Game.swift in Sources */,
 				22C30A0C1E9B527B00DBD316 /* SwiftyJSON.swift in Sources */,
-				229B9CCB1E9049F1003223A5 /* Physics.swift in Sources */,
 				229B9CC71E9049B4003223A5 /* Throwable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
