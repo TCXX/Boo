@@ -20,9 +20,9 @@ class Target: SKSpriteNode{
     
     var theName: String = ""
     
-    init(damage: Int, lifeValue: Int, pos: [Float]){
+    init(damage: Int, maxDamage: Int, pos: [Float]){
         damageValue = damage
-        maxDamageValue = lifeValue
+        maxDamageValue = maxDamage
         thePosition = pos
         let texture = SKTexture(imageNamed: theName)
         super.init(texture: texture, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
@@ -67,7 +67,7 @@ class Wood: Target {
     
     init(pos: [Float])  {
         
-        super.init(damage: woodDamage, lifeValue: woodMax, pos: pos)
+        super.init(damage: woodDamage, maxDamage: woodMax, pos: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -98,7 +98,7 @@ class Pumpkin: Target {
     
     init(pos: [Float])  {
         
-        super.init(damage: pumpkinDamage, lifeValue: pumpkinMax, pos: pos)
+        super.init(damage: pumpkinDamage, maxDamage: pumpkinMax, pos: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -127,7 +127,7 @@ class Vampire: Target {
     
     init(pos: [Float])  {
         
-        super.init(damage: vampireDamage, lifeValue: vampireMax, pos: pos)
+        super.init(damage: vampireDamage, maxDamage: vampireMax, pos: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -154,7 +154,7 @@ class Skeleton: Target {
     
     init(pos: [Float])  {
         
-        super.init(damage: skeletonDamage, lifeValue: skeletonMax, pos: pos)
+        super.init(damage: skeletonDamage, maxDamage: skeletonMax, pos: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -187,7 +187,7 @@ class Bat: Target {
     
     init(pos: [Float])  {
         
-        super.init(damage: batDamage, lifeValue: batMax, pos: pos)
+        super.init(damage: batDamage, maxDamage: batMax, pos: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {

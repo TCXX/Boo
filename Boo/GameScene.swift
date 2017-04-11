@@ -29,9 +29,16 @@ class GameScene: SKScene {
         
         setupSlingshot()
         setupBoxes()
+        setBackground()
         setPhysics()
         
         
+    }
+    
+    func setBackground() {
+        let bg = SKSpriteNode(imageNamed: "background1.png")
+        addChild(bg)
+
     }
     
     func setPhysics() {
