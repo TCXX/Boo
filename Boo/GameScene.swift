@@ -15,24 +15,22 @@ class GameScene: SKScene {
     var touchCurrentPoint: CGPoint!
     var touchStartingPoint :CGPoint!
     
-    static let projectileRadius = CGFloat(15.0)
-    static let projectileRestPosition = CGPoint(x: 10, y: 10)
+    var projectileRadius = CGFloat(15.0)
+    var projectileRestPosition = CGPoint(x:0, y:0)
+    
     static let projectileTouchThreshold = CGFloat(10)
     static let projectileSnapLimit = CGFloat(10)
-    static let forceMultiplier = CGFloat(0.5)
+    static let forceMultiplier = CGFloat(2.5)
     static let rLimit = CGFloat(50)
     
     static let gravity = CGVector(dx: 0, dy: -9.8)
     
     override func didMove(to view: SKView) {
-        backgroundColor = UIColor.brown
-        
+        setBackground()
         setupSlingshot()
         setupBoxes()
-        setBackground()
         setPhysics()
-        
-        
+
     }
     
     func setBackground() {
@@ -48,17 +46,20 @@ class GameScene: SKScene {
     }
     
     func setupSlingshot() {
-        
+        let slingshot0 = SKSpriteNode(imageNamed: "shot0.png")
         let slingshot1 = SKSpriteNode(imageNamed: "shot0.png")
-        slingshot1.position = GameScene.projectileRestPosition
+        projectile = SKSpriteNode(imageNamed: "candy.png")
+        
+        projectileRestPosition = CGPoint(x: self.frame.origin.x+slingshot0.frame.width*2.333,
+                                         y: self.frame.origin.y+slingshot0.frame.height*0.505)
+        slingshot1.position = projectileRestPosition
         addChild(slingshot1)
         
-        projectile = SKSpriteNode(imageNamed: "candy.png")
-        projectile.position = GameScene.projectileRestPosition
+        projectileRadius = projectile.frame.width/2
+        projectile.position = projectileRestPosition
         addChild(projectile)
         
-        let slingshot0 = SKSpriteNode(imageNamed: "shot0.png")
-        slingshot0.position = GameScene.projectileRestPosition
+        slingshot0.position = projectileRestPosition
         addChild(slingshot0)
     }
     
@@ -84,10 +85,10 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         func shouldStartDragging(_ touchLocation:CGPoint, threshold: CGFloat) -> Bool {
             let distance = fingerDistanceFromProjectileRestPosition(
-                GameScene.projectileRestPosition,
+                projectileRestPosition,
                 fingerPosition: touchLocation
             )
-            return distance < GameScene.projectileRadius + threshold
+            return distance < projectileRadius + threshold
         }
         
         if let touch = touches.first {
@@ -128,7 +129,7 @@ class GameScene: SKScene {
             if distance > GameScene.projectileSnapLimit {
                 let vectorX = touchStartingPoint.x - touchCurrentPoint.x
                 let vectorY = touchStartingPoint.y - touchCurrentPoint.y
-                projectile.physicsBody = SKPhysicsBody(circleOfRadius: GameScene.projectileRadius)
+                projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectileRadius)
                 projectile.physicsBody?.applyImpulse(
                     CGVector(
                         dx: vectorX * GameScene.forceMultiplier,
@@ -137,7 +138,7 @@ class GameScene: SKScene {
                 )
             } else {
                 projectile.physicsBody = nil
-                projectile.position = GameScene.projectileRestPosition
+                projectile.position = projectileRestPosition
             }
         }
     }
