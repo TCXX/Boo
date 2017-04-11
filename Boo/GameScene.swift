@@ -27,12 +27,17 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         backgroundColor = UIColor.brown
         
+        setupSlingshot()
+        setupBoxes()
+        setPhysics()
+        
+        
+    }
+    
+    func setPhysics() {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.gravity = GameScene.gravity
         physicsWorld.speed = 1.0
-        
-        setupSlingshot()
-        setupBoxes()
     }
     
     func setupSlingshot() {
@@ -70,7 +75,6 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         func shouldStartDragging(_ touchLocation:CGPoint, threshold: CGFloat) -> Bool {
             let distance = fingerDistanceFromProjectileRestPosition(
                 GameScene.projectileRestPosition,
