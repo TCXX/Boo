@@ -9,15 +9,18 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    // game status
     var currentLevel: Int = 0
     var map: Map?
     
+    // slingshot status
     var projectile: SKSpriteNode!
     var projectileIsDragged = false
     var touchCurrentPoint: CGPoint!
     var touchStartingPoint :CGPoint!
     
+    // slingshot constants
     var projectileRadius = CGFloat(15.0)
     var projectileRestPosition = CGPoint(x:0, y:0)
     var shotPosition = CGPoint(x: 0, y: 0)
@@ -27,11 +30,17 @@ class GameScene: SKScene {
     static let forceMultiplier = CGFloat(2.5)
     static let rLimit = CGFloat(50)
     
+    // game constants
     static let gravity = CGVector(dx: 0, dy: -8)
     
     static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
                                                  "Pumpkin": "pumpkin.png",
                                                  "Vampire": "vampire.png"]
+    
+    // collision constants
+    static let throwableCategory: UInt32 = 0x1 << 0
+    static let woodCategory: UInt32 = 0x1 << 1
+    //static let animalCategory = UInt32(0x1 << 2)
     
     override func didMove(to view: SKView) {
         setBackground()
@@ -49,6 +58,7 @@ class GameScene: SKScene {
     
     func setPhysics() {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsWorld.contactDelegate = self
         physicsWorld.gravity = GameScene.gravity
         physicsWorld.speed = 1.0
     }
@@ -64,7 +74,7 @@ class GameScene: SKScene {
         slingshot1.position = shotPosition
         addChild(slingshot0)
         
-        projectileRadius = projectile.frame.width/2
+        projectileRadius = projectile.frame.width / 2
         projectile.position = projectileRestPosition
         addChild(projectile)
         
@@ -80,10 +90,29 @@ class GameScene: SKScene {
                 let node = SKSpriteNode(imageNamed: image!)
                 node.position = target.getPosition()
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+                node.physicsBody!.categoryBitMask = GameScene.woodCategory
+                node.physicsBody!.contactTestBitMask = GameScene.throwableCategory
                 addChild(node)
             }
         }
         
+    }
+    
+    // https://www.raywenderlich.com/123393/how-to-create-a-breakout-game-with-sprite-kit-and-swift
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        if firstBody.categoryBitMask == GameScene.throwableCategory && secondBody.categoryBitMask == GameScene.woodCategory {
+            print(firstBody)
+        }
+        print("Something hit")
     }
     
     func fingerDistanceFromProjectileRestPosition(_ projectileRestPosition: CGPoint, fingerPosition: CGPoint) -> CGFloat {
@@ -145,7 +174,9 @@ class GameScene: SKScene {
                 let vectorX = touchStartingPoint.x - touchCurrentPoint.x
                 let vectorY = touchStartingPoint.y - touchCurrentPoint.y
                 projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectileRadius)
-                projectile.physicsBody?.applyImpulse(
+                projectile.physicsBody!.categoryBitMask = GameScene.throwableCategory
+                projectile.physicsBody!.contactTestBitMask = GameScene.woodCategory
+                projectile.physicsBody!.applyImpulse(
                     CGVector(
                         dx: vectorX * GameScene.forceMultiplier,
                         dy: vectorY * GameScene.forceMultiplier

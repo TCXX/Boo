@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import SpriteKit
 
-
 class Target: SKSpriteNode{
     
     //var hitCalled: Bool = false
