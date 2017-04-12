@@ -13,19 +13,19 @@ import SpriteKit
 
 class Target: SKSpriteNode{
     
-    var hitCalled: Bool = false
+    //var hitCalled: Bool = false
+    var type = ""
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
     var thePosition = CGPoint(x: 0, y: 0)
     
-    var theName: String = ""
-    
-    init(damage: Int, maxDamage: Int, pos: CGPoint){
+    init(type: String, damage: Int, maxDamage: Int, pos: CGPoint){
+        self.type = type
         damageValue = damage
         maxDamageValue = maxDamage
         thePosition = pos
-        let texture = SKTexture(imageNamed: theName)
-        super.init(texture: texture, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
+
+        super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
 
     }
     
@@ -42,7 +42,7 @@ class Target: SKSpriteNode{
     
     func isHit(items: Throwable){
         
-        hitCalled = true
+        //hitCalled = true
         
         //CHECK PHYSICS IN ANOTHER FUNCTION, THEN CALL isHit
         
@@ -58,123 +58,6 @@ class Target: SKSpriteNode{
 }
 
 
-
-class Wood: Target {
-    //var theName: String = ""
-    
-    var woodDamage: Int = 500
-    var woodMax: Int = 500
-    
-    init(pos: CGPoint)  {
-        
-        super.init(damage: woodDamage, maxDamage: woodMax, pos: pos)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    func update(){
-        if(hitCalled){
-            
-            //update display of score and damage values for wood
-            
-            hitCalled = false
-        }
-        
-        
-        
-    }
-    
-}
-
-
-class Pumpkin: Target {
- //   var theName: String = ""
-    
-    var pumpkinDamage: Int = 100
-    var pumpkinMax: Int = 100
-    
-    init(pos: CGPoint)  {
-        
-        super.init(damage: pumpkinDamage, maxDamage: pumpkinMax, pos: pos)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func update(){
-        
-        if(hitCalled){
-            
-            //update display of score and damage values for pumpkin
-
-            hitCalled = false
-        }
-        
-    }
-    
-}
-
-
-class Vampire: Target {
-   // var theName: String = ""
-    
-    var vampireDamage: Int = 300
-    var vampireMax: Int = 300
-    
-    init(pos: CGPoint)  {
-        
-        super.init(damage: vampireDamage, maxDamage: vampireMax, pos: pos)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func update(){
-        if(hitCalled){
-            
-            //update display of score and damage values for vampire
-            
-            hitCalled = false
-        }
-        
-    }
-}
-
-
-class Skeleton: Target {
-  //  var theName: String = ""
-    
-    var skeletonDamage: Int = 50
-    var skeletonMax: Int = 50
-    
-    init(pos: CGPoint)  {
-        
-        super.init(damage: skeletonDamage, maxDamage: skeletonMax, pos: pos)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    func update(){
-        if(hitCalled){
-        
-            //update display of score and damage values for skeleton
-        
-            hitCalled = false
-        }
-        
-    }
-    
-}
-
-
 class Bat: Target {
   //  var theName: String = ""
     var xv: Double = 0.0      //x-velocity
@@ -184,10 +67,9 @@ class Bat: Target {
     var batMax: Int = 1000
     
     
-    
     init(pos: CGPoint)  {
         
-        super.init(damage: batDamage, maxDamage: batMax, pos: pos)
+        super.init(type: "Bat", damage: batDamage, maxDamage: batMax, pos: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -224,17 +106,16 @@ class Bat: Target {
         }
         
         
-        
     }
     
     func update(){
         
-        if(hitCalled){
+        //if(hitCalled){
             
             //update display of score and damage values for bats
         
-            hitCalled = false
-        }
+            //hitCalled = false
+        //}
         
     }
     

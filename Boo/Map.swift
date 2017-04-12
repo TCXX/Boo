@@ -38,32 +38,15 @@ class Map {
             let pos_y = result["pos_y"].doubleValue
             let pos = CGPoint(x: pos_x, y: pos_y)
             
-            switch type{
-            case "Wood" : targets.append(Wood(pos: pos))
-                           break
-            case "Skeleton": targets.append(Skeleton(pos: pos))
-                           break
-            case "Vampire": targets.append(Vampire(pos: pos))
-                           break
-            case "Pumpkin": targets.append(Pumpkin(pos: pos))
-                           break
-            case "Bat": targets.append(Bat(pos: pos))
-                          break
-            default: break
+            targets.append(Target(type: type, damage: 10, maxDamage: 10, pos: pos))
                 
-            }
-            
-            
         }
         for result in json["Throwable"].arrayValue{
-            
-            throwables.append(result.string!)
-            
-            
-        }
-        
+            if (result.string != nil) {
+                throwables.append(result.string!)
+            }
 
-        
+        }
         
     }
     

@@ -29,6 +29,10 @@ class GameScene: SKScene {
     
     static let gravity = CGVector(dx: 0, dy: -8)
     
+    static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
+                                                 "Pumpkin": "pumpkin.png",
+                                                 "Vampire": "vampire.png"]
+    
     override func didMove(to view: SKView) {
         setBackground()
         setupSlingshot()
@@ -71,10 +75,13 @@ class GameScene: SKScene {
     func loadMap(level: Int) {
         map = Map(currentLevel: level)
         for target in map!.targets {
-            let node = SKSpriteNode(imageNamed: "wood-h.png")
-            node.position = target.getPosition()
-            node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
-            addChild(node)
+            let image = GameScene.targetImages[target.type]
+            if (image != nil) {
+                let node = SKSpriteNode(imageNamed: image!)
+                node.position = target.getPosition()
+                node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+                addChild(node)
+            }
         }
         
     }
