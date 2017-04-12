@@ -13,6 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // game status
     var currentLevel: Int = 0
     var map: Map?
+    var dicFindTarget: [SKNode: Target] = [:]
     
     // slingshot status
     var projectile: SKSpriteNode!
@@ -89,6 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (image != nil) {
                 let node = SKSpriteNode(imageNamed: image!)
                 node.position = target.getPosition()
+                dicFindTarget.updateValue(target, forKey: node)
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
                 node.physicsBody!.categoryBitMask = GameScene.woodCategory
                 node.physicsBody!.contactTestBitMask = GameScene.throwableCategory
@@ -110,9 +112,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         if firstBody.categoryBitMask == GameScene.throwableCategory && secondBody.categoryBitMask == GameScene.woodCategory {
-            print(firstBody)
+            let node = secondBody.node!
+            let target = dicFindTarget[node]!
+            target.decreaseDamageValue(amount: 1)
+            node.alpha = CGFloat(target.damageValue)/CGFloat(target.maxDamageValue)
+            if target.damageValue == 0 {
+                node.removeFromParent()
+            }
         }
-        print("Something hit")
+        
     }
     
     func fingerDistanceFromProjectileRestPosition(_ projectileRestPosition: CGPoint, fingerPosition: CGPoint) -> CGFloat {

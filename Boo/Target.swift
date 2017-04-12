@@ -33,6 +33,14 @@ class Target: SKSpriteNode{
         super.init(coder: aDecoder)
     }
     
+    func decreaseDamageValue (amount: Int) {
+        if damageValue > amount {
+            damageValue = damageValue - amount
+        } else {
+            damageValue = 0
+        }
+    }
+    
     func getPosition() -> CGPoint {
         return thePosition
     }
