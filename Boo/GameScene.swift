@@ -20,13 +20,14 @@ class GameScene: SKScene {
     
     var projectileRadius = CGFloat(15.0)
     var projectileRestPosition = CGPoint(x:0, y:0)
+    var shotPosition = CGPoint(x: 0, y: 0)
     
     static let projectileTouchThreshold = CGFloat(10)
     static let projectileSnapLimit = CGFloat(10)
     static let forceMultiplier = CGFloat(2.5)
     static let rLimit = CGFloat(50)
     
-    static let gravity = CGVector(dx: 0, dy: -9.8)
+    static let gravity = CGVector(dx: 0, dy: -8)
     
     override func didMove(to view: SKView) {
         setBackground()
@@ -50,26 +51,27 @@ class GameScene: SKScene {
     
     func setupSlingshot() {
         let slingshot0 = SKSpriteNode(imageNamed: "shot0.png")
-        let slingshot1 = SKSpriteNode(imageNamed: "shot0.png")
+        let slingshot1 = SKSpriteNode(imageNamed: "shot1.png")
         projectile = SKSpriteNode(imageNamed: "candy.png")
         
-        projectileRestPosition = CGPoint(x: self.frame.origin.x+slingshot0.frame.width*2.333,
+        shotPosition = CGPoint(x: self.frame.origin.x+slingshot0.frame.width*2.333,
                                          y: self.frame.origin.y+slingshot0.frame.height*0.505)
-        slingshot1.position = projectileRestPosition
-        addChild(slingshot1)
+        projectileRestPosition = CGPoint(x: shotPosition.x+20, y: shotPosition.y+60)
+        slingshot1.position = shotPosition
+        addChild(slingshot0)
         
         projectileRadius = projectile.frame.width/2
         projectile.position = projectileRestPosition
         addChild(projectile)
         
-        slingshot0.position = projectileRestPosition
-        addChild(slingshot0)
+        slingshot0.position = shotPosition
+        addChild(slingshot1)
     }
     
     func loadMap(level: Int) {
         map = Map(currentLevel: level)
         for target in map!.targets {
-            let node = SKSpriteNode(imageNamed: "pumpkin.png")
+            let node = SKSpriteNode(imageNamed: "wood-h.png")
             node.position = target.getPosition()
             node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
             addChild(node)
