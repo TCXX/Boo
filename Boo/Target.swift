@@ -16,11 +16,11 @@ class Target: SKSpriteNode{
     var hitCalled: Bool = false
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
-    var thePosition: [Float] = [0, 0]
+    var thePosition = CGPoint(x: 0, y: 0)
     
     var theName: String = ""
     
-    init(damage: Int, maxDamage: Int, pos: [Float]){
+    init(damage: Int, maxDamage: Int, pos: CGPoint){
         damageValue = damage
         maxDamageValue = maxDamage
         thePosition = pos
@@ -34,7 +34,7 @@ class Target: SKSpriteNode{
         super.init(coder: aDecoder)
     }
     
-    func getPosition() -> [Float] {
+    func getPosition() -> CGPoint {
         return thePosition
     }
     
@@ -65,7 +65,7 @@ class Wood: Target {
     var woodDamage: Int = 500
     var woodMax: Int = 500
     
-    init(pos: [Float])  {
+    init(pos: CGPoint)  {
         
         super.init(damage: woodDamage, maxDamage: woodMax, pos: pos)
     }
@@ -96,7 +96,7 @@ class Pumpkin: Target {
     var pumpkinDamage: Int = 100
     var pumpkinMax: Int = 100
     
-    init(pos: [Float])  {
+    init(pos: CGPoint)  {
         
         super.init(damage: pumpkinDamage, maxDamage: pumpkinMax, pos: pos)
     }
@@ -125,7 +125,7 @@ class Vampire: Target {
     var vampireDamage: Int = 300
     var vampireMax: Int = 300
     
-    init(pos: [Float])  {
+    init(pos: CGPoint)  {
         
         super.init(damage: vampireDamage, maxDamage: vampireMax, pos: pos)
     }
@@ -152,7 +152,7 @@ class Skeleton: Target {
     var skeletonDamage: Int = 50
     var skeletonMax: Int = 50
     
-    init(pos: [Float])  {
+    init(pos: CGPoint)  {
         
         super.init(damage: skeletonDamage, maxDamage: skeletonMax, pos: pos)
     }
@@ -185,7 +185,7 @@ class Bat: Target {
     
     
     
-    init(pos: [Float])  {
+    init(pos: CGPoint)  {
         
         super.init(damage: batDamage, maxDamage: batMax, pos: pos)
     }
@@ -202,7 +202,7 @@ class Bat: Target {
         return false
     }
     
-    func flyBat(thePos: [Float]){
+    func flyBat(thePos: CGPoint){
         while(isOnScreen()){
             
             //DO MULTIPLE DRAWS FOR ANIMATION

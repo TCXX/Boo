@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Map {
     
@@ -33,20 +34,20 @@ class Map {
         for result in json["Target"].arrayValue{
           
             let type = result["Type"].stringValue
-            let pos_x = result["pos_x"].floatValue
-            let pos_y = result["pos_y"].floatValue
-            
+            let pos_x = result["pos_x"].doubleValue
+            let pos_y = result["pos_y"].doubleValue
+            let pos = CGPoint(x: pos_x, y: pos_y)
             
             switch type{
-            case "Wood" : targets.append(Wood(pos:[pos_x,pos_y]))
+            case "Wood" : targets.append(Wood(pos: pos))
                            break
-            case "Skeleton": targets.append(Skeleton(pos:[pos_x,pos_y]))
+            case "Skeleton": targets.append(Skeleton(pos: pos))
                            break
-            case "Vampire": targets.append(Vampire(pos:[pos_x,pos_y]))
+            case "Vampire": targets.append(Vampire(pos: pos))
                            break
-            case "Pumpkin": targets.append(Pumpkin(pos:[pos_x,pos_y]))
+            case "Pumpkin": targets.append(Pumpkin(pos: pos))
                            break
-            case "Bat": targets.append(Bat(pos:[pos_x,pos_y]))
+            case "Bat": targets.append(Bat(pos: pos))
                           break
             default: break
                 

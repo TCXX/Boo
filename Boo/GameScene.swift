@@ -10,6 +10,9 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    var currentLevel: Int = 0
+    var map: Map?
+    
     var projectile: SKSpriteNode!
     var projectileIsDragged = false
     var touchCurrentPoint: CGPoint!
@@ -28,9 +31,9 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         setBackground()
         setupSlingshot()
-        setupBoxes()
+        currentLevel = 1
+        loadMap(level: currentLevel)
         setPhysics()
-
     }
     
     func setBackground() {
@@ -63,12 +66,15 @@ class GameScene: SKScene {
         addChild(slingshot0)
     }
     
-    func setupBoxes() {
-        let box = SKSpriteNode(imageNamed: "pumpkin.png")
-        box.setScale(0.33)
-        box.position = CGPoint(x: 100, y: 50)
-        box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
-        addChild(box)
+    func loadMap(level: Int) {
+        map = Map(currentLevel: level)
+        for target in map!.targets {
+            let node = SKSpriteNode(imageNamed: "pumpkin.png")
+            node.position = target.getPosition()
+            node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+            addChild(node)
+        }
+        
     }
     
     func fingerDistanceFromProjectileRestPosition(_ projectileRestPosition: CGPoint, fingerPosition: CGPoint) -> CGFloat {
