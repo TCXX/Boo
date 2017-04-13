@@ -12,7 +12,7 @@ import UIKit
 class Map {
     
     var targets = [Target]()
-    var throwables = [String]()
+    var throwables = [Throwable]()
     
     func getJSON(_ url:String) -> JSON{
         if let url = URL(string:url){
@@ -43,7 +43,7 @@ class Map {
         }
         for result in json["Throwable"].arrayValue{
             if (result.string != nil) {
-                throwables.append(result.string!)
+                throwables.append(Throwable(type: result.string!))
             }
 
         }

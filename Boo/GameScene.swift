@@ -38,6 +38,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                  "Pumpkin": "pumpkin.png",
                                                  "Vampire": "vampire.png"]
     
+    static let throwableImages: [String: String] = ["Candy": "candy.png"]
+    
     // collision constants
     static let throwableCategory: UInt32 = 0x1 << 0
     static let woodCategory: UInt32 = 0x1 << 1
@@ -49,10 +51,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         currentLevel = 1
         loadMap(level: currentLevel)
         setPhysics()
+        setupProjectile(object: map!.throwables[0])
     }
     
     func setBackground() {
         let bg = SKSpriteNode(imageNamed: "background1.png")
+        bg.zPosition = -100
         addChild(bg)
 
     }
@@ -67,20 +71,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setupSlingshot() {
         let slingshot0 = SKSpriteNode(imageNamed: "shot0.png")
         let slingshot1 = SKSpriteNode(imageNamed: "shot1.png")
-        projectile = SKSpriteNode(imageNamed: "candy.png")
         
         shotPosition = CGPoint(x: self.frame.origin.x+slingshot0.frame.width*2.333,
                                          y: self.frame.origin.y+slingshot0.frame.height*0.505)
         projectileRestPosition = CGPoint(x: shotPosition.x+20, y: shotPosition.y+60)
-        slingshot1.position = shotPosition
-        addChild(slingshot0)
         
+        slingshot1.position = shotPosition
+        slingshot1.zPosition = 10
+        addChild(slingshot1)
+        
+        slingshot0.position = shotPosition
+        slingshot0.zPosition = -10
+        addChild(slingshot0)
+    }
+    
+    func setupProjectile (object: Throwable) {
+        projectile = SKSpriteNode(imageNamed: "candy.png")
+        projectile.zPosition = 0
         projectileRadius = projectile.frame.width / 2
         projectile.position = projectileRestPosition
         addChild(projectile)
-        
-        slingshot0.position = shotPosition
-        addChild(slingshot1)
     }
     
     func loadMap(level: Int) {
@@ -93,7 +103,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let image = GameScene.targetImages[type!.name]
             if (image != nil) {
                 let node = SKSpriteNode(imageNamed: image!)
-                node.position = target.getPosition()
+                node.position = target.thePosition
+                node.zPosition = -1
                 dicFindTarget.updateValue(target, forKey: node)
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
                 node.physicsBody!.categoryBitMask = GameScene.woodCategory

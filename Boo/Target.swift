@@ -23,7 +23,7 @@ class Target: SKSpriteNode{
     var type: TargetType? = nil
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
-    var thePosition = CGPoint(x: 0, y: 0)
+    var thePosition = CGPoint(x: 0, y: 0) //where is it used?
     
     init(type: String, pos: CGPoint){
         super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
@@ -52,32 +52,12 @@ class Target: SKSpriteNode{
         }
     }
     
-    func getPosition() -> CGPoint {
-        return thePosition
-    }
-    
     private func convertType (str: String) -> TargetType? {
         let t = Target.dicFindType[str]
         if t == nil {
             return nil
         }
         return t!
-    }
-    
-    func isHit(items: Throwable){
-        
-        //hitCalled = true
-        
-        //CHECK PHYSICS IN ANOTHER FUNCTION, THEN CALL isHit
-        
-        if(damageValue > 0){
-            damageValue = damageValue - (Int)(items.hitImpact * (Double)(damageValue))
-        }
-        
-        if(damageValue <= 0){
-            removeFromParent();
-        }
-    
     }
 }
 
