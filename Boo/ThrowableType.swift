@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class ThrowableType {
     var name = "Unknown"
     var hitImpact = 0
+    var speed: CGFloat = 1.0
     var affectByGravity = true
     
-    init (name: String, hit: Int, gravity: Bool) {
+    init (name: String, speed: CGFloat, hit: Int, gravity: Bool) {
         self.name = name
+        self.speed = speed
         hitImpact = hit
         affectByGravity = gravity
     }

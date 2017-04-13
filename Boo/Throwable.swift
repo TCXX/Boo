@@ -13,20 +13,24 @@ import SpriteKit
 class Throwable: SKSpriteNode {
     
     var type: ThrowableType? = nil
-    var objectSpeed: Int = 0 // speed of the throwable
+    var objectSpeed: CGFloat = 0// speed of the throwable
     var hitImpact:Int = 0 //how much damage does the object have
     var affectedByGravity = true
     
     static let dicFindType: [String: ThrowableType] =
-        ["Candy": ThrowableType.init(name: "Candy", hit: 1, gravity: true)]
+        ["Candy": ThrowableType.init(name: "Candy", speed: 2.5, hit: 1, gravity: true)]
     
     init(type: String) {
         super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
         
         self.type = convertType(str: type)
         
-        //objectSpeed = speed
-        //hitImpact = damage
+        if (self.type != nil) {
+            let t = self.type!
+            objectSpeed = t.speed
+            hitImpact = t.hitImpact
+            affectedByGravity = t.affectByGravity
+        }
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size) //set container for the throwable object
         self.physicsBody?.affectedByGravity = affectedByGravity //Bc subject to gravity, throwable object can fall

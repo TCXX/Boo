@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var currentLevel: Int = 0
     var map: Map?
     var dicFindTarget: [SKNode: Target] = [:]
+    var dicFindThrowable: [SKNode: Throwable] = [:]
     
     // slingshot status
     var projectile: SKSpriteNode!
@@ -28,7 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     static let projectileTouchThreshold = CGFloat(10)
     static let projectileSnapLimit = CGFloat(10)
-    static let forceMultiplier = CGFloat(2.5)
     static let rLimit = CGFloat(50)
     
     // game constants
@@ -38,7 +38,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                  "Pumpkin": "pumpkin.png",
                                                  "Vampire": "vampire.png"]
     
-    static let throwableImages: [String: String] = ["Candy": "candy.png"]
+    static let throwableImages: [String: String] = ["Candy": "candy.png",
+                                                    "Milk": "candy.png",
+                                                    "Banana": "candy.png"]
     
     // collision constants
     static let throwableCategory: UInt32 = 0x1 << 0
@@ -103,6 +105,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             projectileRadius = projectile.frame.width / 2
             projectile.position = projectileRestPosition
             addChild(projectile)
+            
+            dicFindThrowable.updateValue(object, forKey: projectile)
         } else {
             return 0
         }
@@ -149,7 +153,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == GameScene.throwableCategory && secondBody.categoryBitMask == GameScene.woodCategory {
             let node = secondBody.node!
             let target = dicFindTarget[node]!
-            target.decreaseDamageValue(amount: 1)
+            let t = dicFindThrowable[projectile]!
+            
+            target.decreaseDamageValue(amount: t.hitImpact)
             node.alpha = CGFloat(target.damageValue)/CGFloat(target.maxDamageValue)
             if target.damageValue == 0 {
                 node.removeFromParent()
@@ -170,6 +176,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if projectile == nil{
+            return
+        }
+        
         func shouldStartDragging(_ touchLocation:CGPoint, threshold: CGFloat) -> Bool {
             let distance = fingerDistanceFromProjectileRestPosition(
                 projectileRestPosition,
@@ -190,6 +200,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if projectile == nil{
+            return
+        }
+        
         if projectileIsDragged {
             if let touch = touches.first {
                 let touchLocation = touch.location(in: self)
@@ -210,6 +224,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if projectile == nil{
+            return
+        }
+        
         if projectileIsDragged {
             projectileIsDragged = false
             let distance = fingerDistanceFromProjectileRestPosition(touchCurrentPoint, fingerPosition: touchStartingPoint)
@@ -219,10 +237,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectileRadius)
                 projectile.physicsBody!.categoryBitMask = GameScene.throwableCategory
                 projectile.physicsBody!.contactTestBitMask = GameScene.woodCategory
+                
+                let t = dicFindThrowable[projectile]
+                if t == nil {
+                    return
+                }
                 projectile.physicsBody!.applyImpulse(
                     CGVector(
-                        dx: vectorX * GameScene.forceMultiplier,
-                        dy: vectorY * GameScene.forceMultiplier
+                        dx: vectorX * t!.objectSpeed,
+                        dy: vectorY * t!.objectSpeed
                     )
                 )
             } else {
