@@ -12,20 +12,34 @@ import SpriteKit
 
 class Target: SKSpriteNode{
     
+    enum targetType{
+        case wood_h
+        case wood_v
+        case vampire
+        case pumpkin
+        case bat
+        case unknown
+    }
+    
+    static let dicFindType: [String: targetType] = ["Wood-h": .wood_h,
+                                                    "Wood-v": .wood_v,
+                                                    "Vampire": .vampire,
+                                                    "Pumpkin": .pumpkin,
+                                                    "Bat": .bat]
+    
     //var hitCalled: Bool = false
-    var type = ""
+    var type: targetType = .unknown
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
     var thePosition = CGPoint(x: 0, y: 0)
     
     init(type: String, damage: Int, maxDamage: Int, pos: CGPoint){
-        self.type = type
+        super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
+        
+        self.type = convertType(str: type)
         damageValue = damage
         maxDamageValue = maxDamage
         thePosition = pos
-
-        super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,7 +59,13 @@ class Target: SKSpriteNode{
         return thePosition
     }
     
-    
+    private func convertType (str: String) -> targetType {
+        let t = Target.dicFindType[str]
+        if t == nil {
+            return .unknown
+        }
+        return t!
+    }
     
     func isHit(items: Throwable){
         

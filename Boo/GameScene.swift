@@ -34,9 +34,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // game constants
     static let gravity = CGVector(dx: 0, dy: -8)
     
-    static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
-                                                 "Pumpkin": "pumpkin.png",
-                                                 "Vampire": "vampire.png"]
+    static let targetImages: [Target.targetType: String] = [.wood_v: "wood-h.png",
+                                                 .pumpkin: "pumpkin.png",
+                                                 .vampire: "vampire.png"]
     
     // collision constants
     static let throwableCategory: UInt32 = 0x1 << 0
