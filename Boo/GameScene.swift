@@ -48,10 +48,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         setBackground()
         setupSlingshot()
+        
         currentLevel = 1
-        loadMap(level: currentLevel)
+        
+        let count1 = loadMap(level: currentLevel)
+        print (count1)
+        
         setPhysics()
-        setupProjectile(object: map!.throwables[0])
+        
+        let count2 = setupProjectile(object: map!.throwables[0])
+        print(count2)
     }
     
     func setBackground() {
@@ -85,15 +91,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(slingshot0)
     }
     
-    func setupProjectile (object: Throwable) {
-        projectile = SKSpriteNode(imageNamed: "candy.png")
-        projectile.zPosition = 0
-        projectileRadius = projectile.frame.width / 2
-        projectile.position = projectileRestPosition
-        addChild(projectile)
+    func setupProjectile (object: Throwable) -> Int {
+        let type = object.type
+        if type == nil {
+            return 0
+        }
+        let image = GameScene.throwableImages[type!.name]
+        if (image != nil) {
+            projectile = SKSpriteNode(imageNamed: image!)
+            projectile.zPosition = 0
+            projectileRadius = projectile.frame.width / 2
+            projectile.position = projectileRestPosition
+            addChild(projectile)
+        } else {
+            return 0
+        }
+        return 1
     }
     
-    func loadMap(level: Int) {
+    func loadMap(level: Int) -> Int {
+        var count = 0
         map = Map(currentLevel: level)
         for target in map!.targets {
             let type = target.type
@@ -102,6 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             let image = GameScene.targetImages[type!.name]
             if (image != nil) {
+                count = count + 1
                 let node = SKSpriteNode(imageNamed: image!)
                 node.position = target.thePosition
                 node.zPosition = -1
@@ -112,6 +130,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 addChild(node)
             }
         }
+        
+        return count
         
     }
     
