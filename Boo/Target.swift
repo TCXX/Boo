@@ -11,35 +11,32 @@ import UIKit
 import SpriteKit
 
 class Target: SKSpriteNode{
-    
-    enum targetType{
-        case wood_h
-        case wood_v
-        case vampire
-        case pumpkin
-        case bat
-        case unknown
-    }
-    
-    static let dicFindType: [String: targetType] = ["Wood-h": .wood_h,
-                                                    "Wood-v": .wood_v,
-                                                    "Vampire": .vampire,
-                                                    "Pumpkin": .pumpkin,
-                                                    "Bat": .bat]
+
+    static let dicFindType: [String: TargetType] =
+        ["Wood-h": TargetType.init(name: "Wood-h", max: 2, destroy: false, gravity: true),
+         "Wood-v": TargetType.init(name: "Wood-v", max: 2, destroy: false, gravity: true),
+         "Vampire": TargetType.init(name: "Vampire", max: 4, destroy: true, gravity: false),
+         "Pumpkin": TargetType.init(name: "Pumpkin", max: 3, destroy: true, gravity: true),
+         "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: false)]
     
     //var hitCalled: Bool = false
-    var type: targetType = .unknown
+    var type: TargetType? = nil
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
     var thePosition = CGPoint(x: 0, y: 0)
     
-    init(type: String, damage: Int, maxDamage: Int, pos: CGPoint){
+    init(type: String, pos: CGPoint){
         super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
         
         self.type = convertType(str: type)
-        damageValue = damage
-        maxDamageValue = maxDamage
         thePosition = pos
+        
+        if (self.type != nil) {
+            let t = self.type!
+            maxDamageValue = t.maxDamageValue
+            damageValue = maxDamageValue
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,10 +56,10 @@ class Target: SKSpriteNode{
         return thePosition
     }
     
-    private func convertType (str: String) -> targetType {
+    private func convertType (str: String) -> TargetType? {
         let t = Target.dicFindType[str]
         if t == nil {
-            return .unknown
+            return nil
         }
         return t!
     }
@@ -96,7 +93,7 @@ class Bat: Target {
     
     init(pos: CGPoint)  {
         
-        super.init(type: "Bat", damage: batDamage, maxDamage: batMax, pos: pos)
+        super.init(type: "Bat", pos: pos)
     }
     
     required init?(coder aDecoder: NSCoder) {

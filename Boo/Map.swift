@@ -38,7 +38,7 @@ class Map {
             let pos_y = result["pos_y"].doubleValue
             let pos = CGPoint(x: pos_x, y: pos_y)
             
-            targets.append(Target(type: type, damage: 10, maxDamage: 10, pos: pos))
+            targets.append(Target(type: type, pos: pos))
                 
         }
         for result in json["Throwable"].arrayValue{

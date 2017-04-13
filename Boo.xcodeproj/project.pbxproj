@@ -28,6 +28,7 @@
 		22C30A2D1E9DBD9300DBD316 /* vampire.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A271E9DBD9300DBD316 /* vampire.png */; };
 		22C30A2E1E9DBD9300DBD316 /* wood-h.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A281E9DBD9300DBD316 /* wood-h.png */; };
 		22C30A301E9DBDBD00DBD316 /* candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A2F1E9DBDBD00DBD316 /* candy.png */; };
+		22C30A321E9FBD4D00DBD316 /* targetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C30A311E9FBD4D00DBD316 /* targetType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		22C30A271E9DBD9300DBD316 /* vampire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vampire.png; sourceTree = "<group>"; };
 		22C30A281E9DBD9300DBD316 /* wood-h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood-h.png"; sourceTree = "<group>"; };
 		22C30A2F1E9DBDBD00DBD316 /* candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy.png; sourceTree = "<group>"; };
+		22C30A311E9FBD4D00DBD316 /* targetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = targetType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				229B9CCF1E904A5E003223A5 /* Map.swift */,
 				229B9CC61E9049B4003223A5 /* Throwable.swift */,
 				229B9CC81E9049D1003223A5 /* Target.swift */,
+				22C30A311E9FBD4D00DBD316 /* targetType.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				229B9C971E904868003223A5 /* GameScene.swift in Sources */,
 				229B9CD01E904A5E003223A5 /* Map.swift in Sources */,
 				229B9C991E904868003223A5 /* GameViewController.swift in Sources */,
+				22C30A321E9FBD4D00DBD316 /* targetType.swift in Sources */,
 				229B9C911E904868003223A5 /* AppDelegate.swift in Sources */,
 				22C30A0C1E9B527B00DBD316 /* SwiftyJSON.swift in Sources */,
 				229B9CC71E9049B4003223A5 /* Throwable.swift in Sources */,
