@@ -13,10 +13,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // game status
     var currentLevel: Int = 0
     var map: Map?
+    
+    // game timers
     var motionTimer = Timer()
     var delayTimer = Timer()
     
-    // match SKNodes with corresponding models when dealing with the nodes
+    // manage SKNodes with corresponding models
+    var throwableNodes: [SKNode] = []
+    var targetNodes: [SKNode] = []
     var dicFindTarget: [SKNode: Target] = [:]
     var dicFindThrowable: [SKNode: Throwable] = [:]
     
@@ -88,7 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.speed = 1.0
     }
     
-    //start the timer to detect current pojectile's motion
+    // start the timer to detect current pojectile's motion
     func startTimer () {
         motionTimer.invalidate()
         motionTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkIfAtRest), userInfo: nil, repeats: true)
@@ -171,6 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             projectile.zPosition = 0
             projectileRadius = projectile.frame.width / 2
             projectile.position = projectileRestPosition
+            throwableNodes.append(projectile)
             addChild(projectile)
             
             dicFindThrowable.updateValue(object, forKey: projectile)
@@ -199,12 +204,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
                 node.physicsBody!.categoryBitMask = GameScene.woodCategory
                 node.physicsBody!.contactTestBitMask = GameScene.throwableCategory
+                node.physicsBody!.affectedByGravity = target.type!.affectByGravity
+                
+                targetNodes.append(node)
                 addChild(node)
             }
         }
         
         return count
         
+    }
+    
+    // check if player has satisfied requirement to pass current level
+    func checkGoal() {
+        for node in targetNodes {
+            let t = dicFindTarget[node]
+            if t != nil {
+                if (t!.type!.mustDestroy && node.parent != nil) {
+                    return
+                }
+            }
+        }
+        isPassed()
     }
     
     // called when destroy every target in a level
@@ -240,6 +261,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.alpha = CGFloat(target.damageValue)/CGFloat(target.maxDamageValue)
             if target.damageValue == 0 {
                 node.removeFromParent()
+                checkGoal()
             }
         }
         
