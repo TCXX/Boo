@@ -19,7 +19,6 @@ class Target: SKSpriteNode{
          "Pumpkin": TargetType.init(name: "Pumpkin", max: 3, destroy: true, gravity: true),
          "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: false)]
     
-    //var hitCalled: Bool = false
     var type: TargetType? = nil
     var damageValue: Int = 0
     var maxDamageValue: Int = 0

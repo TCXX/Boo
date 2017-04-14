@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var motionTimer = Timer()
     var delayTimer = Timer()
     
+    // match SKNodes with corresponding models when dealing with the nodes
     var dicFindTarget: [SKNode: Target] = [:]
     var dicFindThrowable: [SKNode: Throwable] = [:]
     
@@ -34,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     static let projectileSnapLimit = CGFloat(10)
     static let rLimit = CGFloat(50)
     
-    // game constants
+    // match types with graphics components
     static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
                                                  "Pumpkin": "pumpkin.png",
                                                  "Vampire": "vampire.png"]
@@ -46,23 +47,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // collision constants
     static let throwableCategory: UInt32 = 0x1 << 0
     static let woodCategory: UInt32 = 0x1 << 1
-    //static let animalCategory = UInt32(0x1 << 2)
     
+    
+    // load when the app starts
     override func didMove(to view: SKView) {
+        
+        // set up contexts
         setBackground()
         setupSlingshot()
         
+        //specify current level
         currentLevel = 1
         
+        // load level 1
         let count1 = loadMap(level: currentLevel)
         print ("Target: \(count1) ")
         
+        // set up the physics world with gravity
         setPhysics()
         
+        // load the first throwable of level 1
         let count2 = setupProjectile(object: map!.throwables[0])
         print("Throwable: \(count2) ")
+        
     }
     
+    //set up the background image
     func setBackground() {
         let bg = SKSpriteNode(imageNamed: "background1.png")
         bg.zPosition = -100
@@ -70,6 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
+    // set up the physics world with gravity
     func setPhysics() {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
@@ -77,11 +88,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.speed = 1.0
     }
     
+    //start the timer to detect current pojectile's motion
     func startTimer () {
         motionTimer.invalidate()
         motionTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkIfAtRest), userInfo: nil, repeats: true)
     }
     
+    // check if current projectile is at rest and start the delay timer
     func checkIfAtRest () {
         if projectile == nil{
             return
@@ -98,11 +111,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // several seconds after projectile is at rest, stop current projectile
     func startDelay () {
         delayTimer.invalidate()
         delayTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(nextProjectile), userInfo: nil, repeats: false)
     }
     
+    // destroy old projectile and create a new one if available
     func nextProjectile() -> Int {
         if map == nil {
             print ("map does not exist")
@@ -126,6 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // set up slingshot pieces
     func setupSlingshot() {
         let slingshot0 = SKSpriteNode(imageNamed: "shot0.png")
         let slingshot1 = SKSpriteNode(imageNamed: "shot1.png")
@@ -143,6 +159,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(slingshot0)
     }
     
+    // create given projectile ready to throw
     func setupProjectile (object: Throwable) -> Int {
         let type = object.type
         if type == nil {
@@ -163,6 +180,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return 1
     }
     
+    // load given level
     func loadMap(level: Int) -> Int {
         var count = 0
         map = Map(currentLevel: level)
@@ -189,16 +207,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    // called when destroy every target in a level
     func isPassed () {
         motionTimer.invalidate()
         print("Is passed")
     }
     
+    // called when fail to destroy all targets when run out of throwables
     func isFailed () {
         motionTimer.invalidate()
         print("Is failed")
     }
     
+    // deal with deteched collisions between projectile and targets
     // https://www.raywenderlich.com/123393/how-to-create-a-breakout-game-with-sprite-kit-and-swift
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
@@ -224,10 +245,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    // return distance of two given points
     func fingerDistanceFromProjectileRestPosition(_ projectileRestPosition: CGPoint, fingerPosition: CGPoint) -> CGFloat {
         return sqrt(pow(projectileRestPosition.x - fingerPosition.x,2) + pow(projectileRestPosition.y - fingerPosition.y,2))
     }
     
+    //return projectile's expected position when dragged
     func projectilePositionForFingerPosition(_ fingerPosition: CGPoint, projectileRestPosition:CGPoint, circleRadius rLimit:CGFloat) -> CGPoint {
         let φ = atan2(fingerPosition.x - projectileRestPosition.x, fingerPosition.y - projectileRestPosition.y)
         let cX = sin(φ) * rLimit
@@ -235,6 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return CGPoint(x: cX + projectileRestPosition.x, y: cY + projectileRestPosition.y)
     }
     
+    // start dragging projectile
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if projectile == nil{
             return
@@ -263,6 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // drag projectile when at the slingshot
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if projectile == nil{
             return
@@ -287,6 +312,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // throw out projectile
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if projectile == nil{
             return

@@ -16,6 +16,7 @@ class Map {
     
     var gravity = CGVector(dx: 0, dy: -8)
     
+    // SwiftyJSON helper function
     func getJSON(_ url:String) -> JSON{
         if let url = URL(string:url){
             if let data = try? Data(contentsOf: url) {
@@ -29,7 +30,7 @@ class Map {
         }
     }
     
-    
+    // get level info from AWS
     init(currentLevel: Int){
         let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level\(currentLevel)")
         
