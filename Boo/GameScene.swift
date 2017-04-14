@@ -13,6 +13,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // game status
     var currentLevel: Int = 0
     var map: Map?
+    var motionTimer = Timer()
+    var delayTimer = Timer()
+    
     var dicFindTarget: [SKNode: Target] = [:]
     var dicFindThrowable: [SKNode: Throwable] = [:]
     
@@ -32,8 +35,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     static let rLimit = CGFloat(50)
     
     // game constants
-    static let gravity = CGVector(dx: 0, dy: -8)
-    
     static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
                                                  "Pumpkin": "pumpkin.png",
                                                  "Vampire": "vampire.png"]
@@ -54,12 +55,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         currentLevel = 1
         
         let count1 = loadMap(level: currentLevel)
-        print (count1)
+        print ("Target: \(count1) ")
         
         setPhysics()
         
         let count2 = setupProjectile(object: map!.throwables[0])
-        print(count2)
+        print("Throwable: \(count2) ")
     }
     
     func setBackground() {
@@ -72,8 +73,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setPhysics() {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
-        physicsWorld.gravity = GameScene.gravity
+        physicsWorld.gravity = map!.gravity
         physicsWorld.speed = 1.0
+    }
+    
+    func startTimer () {
+        motionTimer.invalidate()
+        motionTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkIfAtRest), userInfo: nil, repeats: true)
+    }
+    
+    func checkIfAtRest () {
+        if projectile == nil{
+            return
+        } else if projectile!.physicsBody == nil {
+            return
+        }
+        
+        if projectile!.physicsBody!.velocity.dx + projectile!.physicsBody!.velocity.dy < 0.01 {
+            if (delayTimer.isValid == false) {
+                startDelay()
+            }
+        } else { // still in motion
+            delayTimer.invalidate()
+        }
+    }
+    
+    func startDelay () {
+        delayTimer.invalidate()
+        delayTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(nextProjectile), userInfo: nil, repeats: false)
+    }
+    
+    func nextProjectile() -> Int {
+        if map == nil {
+            print ("map does not exist")
+            return 0
+        }
+        
+        if projectile != nil {
+            projectile.removeFromParent()
+        }
+        
+        if map!.throwables.isEmpty == false {
+           map!.throwables.remove(at: 0)
+            if map!.throwables.isEmpty == false {
+                return setupProjectile(object: map!.throwables[0])
+            } else {
+                isFailed()
+                return 0
+            }
+        } else {
+            return 0
+        }
     }
     
     func setupSlingshot() {
@@ -139,6 +189,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func isPassed () {
+        motionTimer.invalidate()
+        print("Is passed")
+    }
+    
+    func isFailed () {
+        motionTimer.invalidate()
+        print("Is failed")
+    }
+    
     // https://www.raywenderlich.com/123393/how-to-create-a-breakout-game-with-sprite-kit-and-swift
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
@@ -181,6 +241,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         func shouldStartDragging(_ touchLocation:CGPoint, threshold: CGFloat) -> Bool {
+            if projectile.physicsBody != nil {
+                return false
+            }
+            
             let distance = fingerDistanceFromProjectileRestPosition(
                 projectileRestPosition,
                 fingerPosition: touchLocation
@@ -237,6 +301,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectileRadius)
                 projectile.physicsBody!.categoryBitMask = GameScene.throwableCategory
                 projectile.physicsBody!.contactTestBitMask = GameScene.woodCategory
+                
+                startTimer()
                 
                 let t = dicFindThrowable[projectile]
                 if t == nil {

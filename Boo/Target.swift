@@ -23,7 +23,7 @@ class Target: SKSpriteNode{
     var type: TargetType? = nil
     var damageValue: Int = 0
     var maxDamageValue: Int = 0
-    var thePosition = CGPoint(x: 0, y: 0) //where is it used?
+    var thePosition = CGPoint(x: 0, y: 0)
     
     init(type: String, pos: CGPoint){
         super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))

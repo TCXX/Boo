@@ -14,6 +14,8 @@ class Map {
     var targets = [Target]()
     var throwables = [Throwable]()
     
+    var gravity = CGVector(dx: 0, dy: -8)
+    
     func getJSON(_ url:String) -> JSON{
         if let url = URL(string:url){
             if let data = try? Data(contentsOf: url) {

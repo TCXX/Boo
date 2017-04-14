@@ -18,7 +18,9 @@ class Throwable: SKSpriteNode {
     var affectedByGravity = true
     
     static let dicFindType: [String: ThrowableType] =
-        ["Candy": ThrowableType.init(name: "Candy", speed: 2.5, hit: 1, gravity: true)]
+        ["Candy": ThrowableType.init(name: "Candy", speed: 2.5, hit: 1, gravity: true),
+         "Milk": ThrowableType.init(name: "Milk", speed: 2.5, hit: 1, gravity: true),
+         "Banana": ThrowableType.init(name: "Banana", speed: 2.5, hit: 1, gravity: true)]
     
     init(type: String) {
         super.init(texture: nil, color: UIColor.clear, size: CGSize.init(width: 0.3, height: 0.3))
