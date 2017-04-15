@@ -19,7 +19,6 @@
 		229B9CC71E9049B4003223A5 /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CC61E9049B4003223A5 /* Throwable.swift */; };
 		229B9CC91E9049D1003223A5 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CC81E9049D1003223A5 /* Target.swift */; };
 		229B9CD01E904A5E003223A5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9CCF1E904A5E003223A5 /* Map.swift */; };
-		22C30A0C1E9B527B00DBD316 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C30A0B1E9B527B00DBD316 /* SwiftyJSON.swift */; };
 		22C30A221E9DBD8500DBD316 /* shot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A211E9DBD8500DBD316 /* shot1.png */; };
 		22C30A291E9DBD9300DBD316 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A231E9DBD9300DBD316 /* background1.png */; };
 		22C30A2A1E9DBD9300DBD316 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A241E9DBD9300DBD316 /* bat.png */; };
@@ -30,6 +29,7 @@
 		22C30A301E9DBDBD00DBD316 /* candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A2F1E9DBDBD00DBD316 /* candy.png */; };
 		22C30A321E9FBD4D00DBD316 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C30A311E9FBD4D00DBD316 /* TargetType.swift */; };
 		22C30A341E9FE32B00DBD316 /* ThrowableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C30A331E9FE32B00DBD316 /* ThrowableType.swift */; };
+		68B2641B1EA28DE9007124BC /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B2641A1EA28DE9007124BC /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,6 @@
 		229B9CC61E9049B4003223A5 /* Throwable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Throwable.swift; sourceTree = "<group>"; };
 		229B9CC81E9049D1003223A5 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		229B9CCF1E904A5E003223A5 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		22C30A0B1E9B527B00DBD316 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "../../../Downloads/Boo-master/Boo/SwiftyJSON.swift"; sourceTree = "<group>"; };
 		22C30A211E9DBD8500DBD316 /* shot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot1.png; sourceTree = "<group>"; };
 		22C30A231E9DBD9300DBD316 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
 		22C30A241E9DBD9300DBD316 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		22C30A2F1E9DBDBD00DBD316 /* candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy.png; sourceTree = "<group>"; };
 		22C30A311E9FBD4D00DBD316 /* TargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		22C30A331E9FE32B00DBD316 /* ThrowableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowableType.swift; sourceTree = "<group>"; };
+		68B2641A1EA28DE9007124BC /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +136,7 @@
 				229B9C981E904868003223A5 /* GameViewController.swift */,
 				229B9C9A1E904868003223A5 /* Main.storyboard */,
 				229B9C9D1E904868003223A5 /* Assets.xcassets */,
-				22C30A0B1E9B527B00DBD316 /* SwiftyJSON.swift */,
+				68B2641A1EA28DE9007124BC /* SwiftyJSON.swift */,
 				229B9CD81E9B43B2003223A5 /* pics */,
 				229B9C9F1E904868003223A5 /* LaunchScreen.storyboard */,
 				229B9CA21E904868003223A5 /* Info.plist */,
@@ -336,11 +336,11 @@
 				229B9CC91E9049D1003223A5 /* Target.swift in Sources */,
 				229B9C971E904868003223A5 /* GameScene.swift in Sources */,
 				229B9CD01E904A5E003223A5 /* Map.swift in Sources */,
+				68B2641B1EA28DE9007124BC /* SwiftyJSON.swift in Sources */,
 				229B9C991E904868003223A5 /* GameViewController.swift in Sources */,
 				22C30A321E9FBD4D00DBD316 /* TargetType.swift in Sources */,
 				22C30A341E9FE32B00DBD316 /* ThrowableType.swift in Sources */,
 				229B9C911E904868003223A5 /* AppDelegate.swift in Sources */,
-				22C30A0C1E9B527B00DBD316 /* SwiftyJSON.swift in Sources */,
 				229B9CC71E9049B4003223A5 /* Throwable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
