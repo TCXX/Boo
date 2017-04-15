@@ -20,8 +20,8 @@ class Target: SKSpriteNode{
          "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: false)]
     
     var type: TargetType? = nil
-    var damageValue: Int = 0
-    var maxDamageValue: Int = 0
+    var damageValue: Double = 0
+    var maxDamageValue: Double = 0
     var thePosition = CGPoint(x: 0, y: 0)
     
     init(type: String, pos: CGPoint){
@@ -43,7 +43,7 @@ class Target: SKSpriteNode{
         super.init(coder: aDecoder)
     }
     
-    func decreaseDamageValue (amount: Int) {
+    func decreaseDamageValue (amount: Double) {
         if damageValue > amount {
             damageValue = damageValue - amount
         } else {

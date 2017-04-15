@@ -10,11 +10,11 @@ import Foundation
 
 class TargetType {
     var name = "Unknown"
-    var maxDamageValue = 10
+    var maxDamageValue: Double = 10
     var mustDestroy = false
     var affectByGravity = false
     
-    init (name: String, max: Int, destroy: Bool, gravity: Bool) {
+    init (name: String, max: Double, destroy: Bool, gravity: Bool) {
         self.name = name
         maxDamageValue = max
         mustDestroy = destroy

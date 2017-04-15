@@ -106,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        if projectile!.physicsBody!.velocity.dx + projectile!.physicsBody!.velocity.dy < 0.01 {
+        if nodeSpeed(node: projectile!) < 0.1 {
             if (delayTimer.isValid == false) {
                 startDelay()
             }
@@ -118,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // several seconds after projectile is at rest, stop current projectile
     func startDelay () {
         delayTimer.invalidate()
-        delayTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(nextProjectile), userInfo: nil, repeats: false)
+        delayTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(nextProjectile), userInfo: nil, repeats: false)
     }
     
     // destroy old projectile and create a new one if available
@@ -256,8 +256,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let node = secondBody.node!
             let target = dicFindTarget[node]!
             let t = dicFindThrowable[projectile]!
-            
-            target.decreaseDamageValue(amount: t.hitImpact)
+            let damage = Double(nodeSpeed(node: node)) * t.hitImpact + 1.0
+            target.decreaseDamageValue(amount: damage)
             node.alpha = CGFloat(target.damageValue)/CGFloat(target.maxDamageValue)
             if target.damageValue == 0 {
                 node.removeFromParent()
@@ -270,6 +270,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // return distance of two given points
     func fingerDistanceFromProjectileRestPosition(_ projectileRestPosition: CGPoint, fingerPosition: CGPoint) -> CGFloat {
         return sqrt(pow(projectileRestPosition.x - fingerPosition.x,2) + pow(projectileRestPosition.y - fingerPosition.y,2))
+    }
+    
+    func nodeSpeed(node: SKNode) -> Double {
+        if node.physicsBody == nil{
+            return 0
+        }
+        return sqrt(Double(pow(node.physicsBody!.velocity.dx, 2)) + Double(pow(node.physicsBody!.velocity.dy, 2)))
     }
     
     //return projectile's expected position when dragged
