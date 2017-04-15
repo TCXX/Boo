@@ -106,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        if nodeSpeed(node: projectile!) < 0.1 {
+        if nodeSpeed(node: projectile!) < 1 {
             if (delayTimer.isValid == false) {
                 startDelay()
             }
@@ -215,6 +215,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func removeCurrentMap() {
+        motionTimer.invalidate()
+        delayTimer.invalidate()
+        
+        for node in throwableNodes {
+            node.removeFromParent()
+        }
+        
+        for node in targetNodes {
+            node.removeFromParent()
+        }
+    }
+    
     // check if player has satisfied requirement to pass current level
     func checkGoal() {
         for node in targetNodes {
@@ -230,13 +243,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // called when destroy every target in a level
     func isPassed () {
-        motionTimer.invalidate()
+        removeCurrentMap()
         print("Is passed")
     }
     
     // called when fail to destroy all targets when run out of throwables
     func isFailed () {
-        motionTimer.invalidate()
+        removeCurrentMap()
         print("Is failed")
     }
     
