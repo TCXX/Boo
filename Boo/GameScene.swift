@@ -39,10 +39,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     static let projectileSnapLimit = CGFloat(10)
     static let rLimit = CGFloat(50)
     
+    //user stats 
+    var totalScore = 0; /**Add scores to screen**/
+    var numLives = 3;
+    
+    
     // match types with graphics components
     static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
                                                  "Pumpkin": "pumpkin.png",
-                                                 "Vampire": "vampire.png"]
+                                                 "Vampire": "vampire.png",
+                                                 "Bat": "vampire.png"] //add bat image later
     
     static let throwableImages: [String: String] = ["Candy": "candy.png",
                                                     "Milk": "candy.png",

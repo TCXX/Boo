@@ -15,9 +15,9 @@ class Target: SKSpriteNode{
     static let dicFindType: [String: TargetType] =
         ["Wood-h": TargetType.init(name: "Wood-h", max: 2, destroy: false, gravity: true),
          "Wood-v": TargetType.init(name: "Wood-v", max: 2, destroy: false, gravity: true),
-         "Vampire": TargetType.init(name: "Vampire", max: 4, destroy: true, gravity: false),
+         "Vampire": TargetType.init(name: "Vampire", max: 4, destroy: true, gravity: true),
          "Pumpkin": TargetType.init(name: "Pumpkin", max: 3, destroy: true, gravity: true),
-         "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: false)]
+         "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: true)]
     
     var type: TargetType? = nil
     var damageValue: Double = 0
