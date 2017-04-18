@@ -17,7 +17,9 @@ class Target: SKSpriteNode{
          "Wood-v": TargetType.init(name: "Wood-v", max: 2, destroy: false, gravity: true),
          "Vampire": TargetType.init(name: "Vampire", max: 4, destroy: true, gravity: true),
          "Pumpkin": TargetType.init(name: "Pumpkin", max: 3, destroy: true, gravity: true),
-         "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: true)]
+         "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: true),
+         "Square": TargetType.init(name: "Square", max: 2, destroy: true, gravity: true),
+         "Ghost": TargetType.init(name: "Ghost", max: 4, destroy: true, gravity: true)]
     
     var type: TargetType? = nil
     var damageValue: Double = 0

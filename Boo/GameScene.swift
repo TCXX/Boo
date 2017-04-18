@@ -48,11 +48,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
                                                  "Pumpkin": "pumpkin.png",
                                                  "Vampire": "vampire.png",
-                                                 "Bat": "vampire.png"] //add bat image later
+                                                 "Bat": "bat.png",
+                                                 "Square": "square.png",
+                                                 "Ghost": "ghost.png"]
     
     static let throwableImages: [String: String] = ["Candy": "candy.png",
-                                                    "Milk": "candy.png",
-                                                    "Banana": "candy.png"]
+                                                    "Milk": "milk.png",
+                                                    "Banana": "banana.png"]
     
     // collision constants
     static let throwableCategory: UInt32 = 0x1 << 0

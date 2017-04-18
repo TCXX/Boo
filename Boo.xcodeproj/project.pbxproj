@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		226BE1BB1EA597BD007C4784 /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = 226BE1B81EA597BD007C4784 /* ghost.png */; };
+		226BE1BC1EA597BD007C4784 /* pumpkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 226BE1B91EA597BD007C4784 /* pumpkin.png */; };
+		226BE1BD1EA597BD007C4784 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 226BE1BA1EA597BD007C4784 /* square.png */; };
+		226BE1C01EA5AB11007C4784 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = 226BE1BE1EA5AB11007C4784 /* banana.png */; };
+		226BE1C11EA5AB11007C4784 /* milk.png in Resources */ = {isa = PBXBuildFile; fileRef = 226BE1BF1EA5AB11007C4784 /* milk.png */; };
 		229B9C911E904868003223A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9C901E904868003223A5 /* AppDelegate.swift */; };
 		229B9C931E904868003223A5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 229B9C921E904868003223A5 /* GameScene.sks */; };
 		229B9C971E904868003223A5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B9C961E904868003223A5 /* GameScene.swift */; };
@@ -22,7 +27,6 @@
 		22C30A221E9DBD8500DBD316 /* shot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A211E9DBD8500DBD316 /* shot1.png */; };
 		22C30A291E9DBD9300DBD316 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A231E9DBD9300DBD316 /* background1.png */; };
 		22C30A2A1E9DBD9300DBD316 /* bat.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A241E9DBD9300DBD316 /* bat.png */; };
-		22C30A2B1E9DBD9300DBD316 /* pumpkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A251E9DBD9300DBD316 /* pumpkin.png */; };
 		22C30A2C1E9DBD9300DBD316 /* shot0.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A261E9DBD9300DBD316 /* shot0.png */; };
 		22C30A2D1E9DBD9300DBD316 /* vampire.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A271E9DBD9300DBD316 /* vampire.png */; };
 		22C30A2E1E9DBD9300DBD316 /* wood-h.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C30A281E9DBD9300DBD316 /* wood-h.png */; };
@@ -50,6 +54,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		226BE1B81EA597BD007C4784 /* ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost.png; sourceTree = "<group>"; };
+		226BE1B91EA597BD007C4784 /* pumpkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pumpkin.png; sourceTree = "<group>"; };
+		226BE1BA1EA597BD007C4784 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		226BE1BE1EA5AB11007C4784 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banana.png; sourceTree = "<group>"; };
+		226BE1BF1EA5AB11007C4784 /* milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = milk.png; sourceTree = "<group>"; };
 		229B9C8D1E904868003223A5 /* Boo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229B9C901E904868003223A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		229B9C921E904868003223A5 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -71,7 +80,6 @@
 		22C30A211E9DBD8500DBD316 /* shot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot1.png; sourceTree = "<group>"; };
 		22C30A231E9DBD9300DBD316 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
 		22C30A241E9DBD9300DBD316 /* bat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bat.png; sourceTree = "<group>"; };
-		22C30A251E9DBD9300DBD316 /* pumpkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pumpkin.png; sourceTree = "<group>"; };
 		22C30A261E9DBD9300DBD316 /* shot0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot0.png; sourceTree = "<group>"; };
 		22C30A271E9DBD9300DBD316 /* vampire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vampire.png; sourceTree = "<group>"; };
 		22C30A281E9DBD9300DBD316 /* wood-h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood-h.png"; sourceTree = "<group>"; };
@@ -177,11 +185,15 @@
 		229B9CD81E9B43B2003223A5 /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				226BE1BE1EA5AB11007C4784 /* banana.png */,
+				226BE1BF1EA5AB11007C4784 /* milk.png */,
 				22C30A231E9DBD9300DBD316 /* background1.png */,
 				22C30A241E9DBD9300DBD316 /* bat.png */,
-				22C30A251E9DBD9300DBD316 /* pumpkin.png */,
 				22C30A261E9DBD9300DBD316 /* shot0.png */,
 				22C30A2F1E9DBDBD00DBD316 /* candy.png */,
+				226BE1B81EA597BD007C4784 /* ghost.png */,
+				226BE1B91EA597BD007C4784 /* pumpkin.png */,
+				226BE1BA1EA597BD007C4784 /* square.png */,
 				22C30A271E9DBD9300DBD316 /* vampire.png */,
 				22C30A281E9DBD9300DBD316 /* wood-h.png */,
 				22C30A211E9DBD8500DBD316 /* shot1.png */,
@@ -298,17 +310,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				229B9C9C1E904868003223A5 /* Main.storyboard in Resources */,
+				226BE1BB1EA597BD007C4784 /* ghost.png in Resources */,
 				22C30A2C1E9DBD9300DBD316 /* shot0.png in Resources */,
+				226BE1BC1EA597BD007C4784 /* pumpkin.png in Resources */,
 				22C30A291E9DBD9300DBD316 /* background1.png in Resources */,
-				22C30A2B1E9DBD9300DBD316 /* pumpkin.png in Resources */,
 				22C30A2D1E9DBD9300DBD316 /* vampire.png in Resources */,
 				22C30A2A1E9DBD9300DBD316 /* bat.png in Resources */,
 				22C30A2E1E9DBD9300DBD316 /* wood-h.png in Resources */,
+				226BE1C11EA5AB11007C4784 /* milk.png in Resources */,
 				22C30A301E9DBDBD00DBD316 /* candy.png in Resources */,
 				22C30A221E9DBD8500DBD316 /* shot1.png in Resources */,
+				226BE1BD1EA597BD007C4784 /* square.png in Resources */,
 				229B9C931E904868003223A5 /* GameScene.sks in Resources */,
 				229B9C9E1E904868003223A5 /* Assets.xcassets in Resources */,
 				229B9CA11E904868003223A5 /* LaunchScreen.storyboard in Resources */,
+				226BE1C01EA5AB11007C4784 /* banana.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
