@@ -264,6 +264,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // called when destroy every target in a level
     func isPassed () {
         removeCurrentMap()
+        let pass = SKSpriteNode(imageNamed: "passed.png")
+        hintLayer.addChild(pass)
         print("Is passed")
     }
     
