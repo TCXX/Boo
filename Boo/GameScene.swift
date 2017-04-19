@@ -12,6 +12,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     // game status
     var currentLevel: Int = 0
+    var gameStarted = false
     var map: Map?
     
     // game timers
@@ -83,18 +84,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //specify current level
         currentLevel = 1
         
-        // load level 1
+        startGame()
+    }
+    
+    func startGame() {
+        hintLayer.removeAllChildren()
+
         let count1 = loadMap(level: currentLevel)
         print ("Target: \(count1) ")
         
-        // set up the physics world with gravity
-        setPhysics()
-        
-        // load the first throwable of level 1
-        let count2 = setupProjectile(object: map!.throwables[0])
-        print("Throwable: \(count2) ")
-        
-    }
+        if count1 > 0 {
+            // set up the physics world with gravity
+            setPhysics()
+            
+            // load the first throwable of level 1
+            let count2 = setupProjectile(object: map!.throwables[0])
+            print("Throwable: \(count2) ")
+            
+            gameStarted = true
+            
+        } else {
+            gameStarted = false
+            print("Error: map fails to load! ")
+        }
+}
     
     //set up the background image
     func setBackground() {
@@ -266,6 +279,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeCurrentMap()
         let pass = SKSpriteNode(imageNamed: "passed.png")
         hintLayer.addChild(pass)
+        currentLevel += 1
+        gameStarted = false
         print("Is passed")
     }
     
@@ -274,6 +289,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeCurrentMap()
         let fail = SKSpriteNode(imageNamed: "failed.png")
         hintLayer.addChild(fail)
+        gameStarted = false
         print("Is failed")
     }
     
@@ -327,6 +343,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // start dragging projectile
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if projectile == nil{
+            return
+        }
+        
+        if !gameStarted {
+            startGame()
             return
         }
         
