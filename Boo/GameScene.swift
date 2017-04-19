@@ -18,6 +18,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var motionTimer = Timer()
     var delayTimer = Timer()
     
+    // layers
+    let bgLayer = SKSpriteNode()
+    let mainLayer = SKSpriteNode()
+    let scoreLayer = SKSpriteNode()
+    let hintLayer = SKSpriteNode()
+    
     // manage SKNodes with corresponding models
     var throwableNodes: [SKNode] = []
     var targetNodes: [SKNode] = []
@@ -65,6 +71,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         // set up contexts
+        addChild(bgLayer)
+        addChild(mainLayer)
+        addChild(scoreLayer)
+        addChild(hintLayer)
+        hintLayer.zPosition = 100
+        
         setBackground()
         setupSlingshot()
         
@@ -88,7 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setBackground() {
         let bg = SKSpriteNode(imageNamed: "background1.png")
         bg.zPosition = -100
-        addChild(bg)
+        bgLayer.addChild(bg)
 
     }
     
@@ -164,11 +176,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         slingshot1.position = shotPosition
         slingshot1.zPosition = 10
-        addChild(slingshot1)
+        mainLayer.addChild(slingshot1)
         
         slingshot0.position = shotPosition
         slingshot0.zPosition = -10
-        addChild(slingshot0)
+        mainLayer.addChild(slingshot0)
     }
     
     // create given projectile ready to throw
@@ -184,7 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             projectileRadius = projectile.frame.width / 2
             projectile.position = projectileRestPosition
             throwableNodes.append(projectile)
-            addChild(projectile)
+            mainLayer.addChild(projectile)
             
             dicFindThrowable.updateValue(object, forKey: projectile)
         } else {
@@ -215,7 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 node.physicsBody!.affectedByGravity = target.type!.affectByGravity
                 
                 targetNodes.append(node)
-                addChild(node)
+                mainLayer.addChild(node)
             }
         }
         
@@ -258,6 +270,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // called when fail to destroy all targets when run out of throwables
     func isFailed () {
         removeCurrentMap()
+        let fail = SKSpriteNode(imageNamed: "failed.png")
+        hintLayer.addChild(fail)
         print("Is failed")
     }
     
