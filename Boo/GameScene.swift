@@ -152,7 +152,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // several seconds after projectile is at rest, stop current projectile
     func startDelay () {
         delayTimer.invalidate()
-        delayTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(nextProjectile), userInfo: nil, repeats: false)
+        delayTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(nextProjectile), userInfo: nil, repeats: false)
     }
     
     // destroy old projectile and create a new one if available

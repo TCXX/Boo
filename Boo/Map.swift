@@ -32,8 +32,13 @@ class Map {
     
     // get level info from AWS
     init(currentLevel: Int){
-        let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1/L\(currentLevel).json")
+
+     //   let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1/L\(currentLevel).json")
         
+
+       // let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level\(currentLevel)")
+        let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/L18")
+
         for result in json["Target"].arrayValue{
           
             let type = result["Type"].stringValue
