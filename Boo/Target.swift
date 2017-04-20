@@ -115,12 +115,12 @@ class Bat: Target {
     
     func update(){
         
-        //if(hitCalled){
+        /*if(hitCalled){
             
-            //update display of score and damage values for bats
+            update display of score and damage values for bats
         
-            //hitCalled = false
-        //}
+            hitCalled = false
+        }*/
         
     }
     
