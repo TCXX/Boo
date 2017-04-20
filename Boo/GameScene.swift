@@ -52,7 +52,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     // match types with graphics components
-    static let targetImages: [String: String] = ["Wood-v": "wood-h.png",
+    static let targetImages: [String: String] = ["Wood-v": "wood-v.png",
+                                                 "Wood-h": "wood-h.png",
                                                  "Pumpkin": "pumpkin.png",
                                                  "Vampire": "vampire.png",
                                                  "Bat": "bat.png",
