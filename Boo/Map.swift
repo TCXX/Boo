@@ -33,11 +33,11 @@ class Map {
     // get level info from AWS
     init(currentLevel: Int){
 
-     //   let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/Level1/L\(currentLevel).json")
+        let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/WorkingLevels/L\(currentLevel)")
         
-
-       
-        let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/WorkingLevels/L1")
+        if json == JSON.null {
+            randomCreate(hardness: currentLevel)
+        }
 
         for result in json["Target"].arrayValue{
           
@@ -56,6 +56,33 @@ class Map {
 
         }
         
+    }
+    
+    func randomCreate(hardness: Int) {
+        let group1 = ["Candy", "Candy", "Candy", "Candy", "Banana", "Milk"]
+        let group2 = ["Wood-v", "Wood-h", "Square", "Square", "Square"]
+        let group3 = ["Vampire", "Ghost", "Bat", "Pumpkin", "Pumpkin", "Pumpkin", "Pumpkin"]
+        
+        for _ in 0...hardness/4 + 3 {
+            let type = arc4random_uniform(UInt32(group1.count))
+            throwables.append(Throwable(type: group1[Int(type)]))
+        }
+        
+        for _ in 0...hardness/3 + 4 {
+            let type = arc4random_uniform(UInt32(group2.count))
+            let pos_x = arc4random_uniform(600)
+            let pos_y = arc4random_uniform(300)
+            targets.append(Target(type: group2[Int(type)], pos: CGPoint(x: Int(pos_x), y: Int(pos_y))))
+        }
+        
+        for _ in 0...hardness/2 + 2 {
+            let type = arc4random_uniform(UInt32(group3.count))
+            let pos_x = arc4random_uniform(500)
+            let pos_y = arc4random_uniform(300)
+            targets.append(Target(type: group3[Int(type)], pos: CGPoint(x: Int(pos_x), y: Int(pos_y))))
+        }
+        
+        print ("random level created! ")
     }
     
 }

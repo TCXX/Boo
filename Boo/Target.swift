@@ -13,13 +13,13 @@ import SpriteKit
 class Target: SKSpriteNode{
 
     static let dicFindType: [String: TargetType] =
-        ["Wood-h": TargetType.init(name: "Wood-h", max: 2, destroy: false, gravity: false),
-         "Wood-v": TargetType.init(name: "Wood-v", max: 2, destroy: false, gravity: false),
-         "Vampire": TargetType.init(name: "Vampire", max: 4, destroy: true, gravity: false),
-         "Pumpkin": TargetType.init(name: "Pumpkin", max: 3, destroy: true, gravity: false),
-         "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: true),
-         "Square": TargetType.init(name: "Square", max: 2, destroy: true, gravity: false),
-         "Ghost": TargetType.init(name: "Ghost", max: 4, destroy: true, gravity: false)]
+        ["Wood-h": TargetType.init(name: "Wood-h", max: 0.8, destroy: false, gravity: true),
+         "Wood-v": TargetType.init(name: "Wood-v", max: 0.8, destroy: false, gravity: true),
+         "Vampire": TargetType.init(name: "Vampire", max: 3.0, destroy: true, gravity: false),
+         "Pumpkin": TargetType.init(name: "Pumpkin", max: 2.0, destroy: true, gravity: true),
+         "Bat": TargetType.init(name: "Bat", max: 2.5, destroy: true, gravity: false),
+         "Square": TargetType.init(name: "Square", max: 1.0, destroy: false, gravity: true),
+         "Ghost": TargetType.init(name: "Ghost", max: 2.5, destroy: true, gravity: true)]
     
     var type: TargetType? = nil
     var damageValue: Double = 0
@@ -61,68 +61,3 @@ class Target: SKSpriteNode{
         return t!
     }
 }
-
-
-class Bat: Target {
-  //  var theName: String = ""
-    var xv: Double = 0.0      //x-velocity
-    var yv: Double = 0.0      //y-velocity
-    
-    var batDamage: Int = 1000
-    var batMax: Int = 1000
-    
-    
-    init(pos: CGPoint)  {
-        
-        super.init(type: "Bat", pos: pos)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    func isOnScreen() -> Bool {
-        
-        //CHECK IF THE OBJECT IS AT THE EDGE OF THE SCREEN, THEN CHANGE THE DIRECTION OF  VELOCITY
-        
-        return false
-    }
-    
-    func flyBat(thePos: CGPoint){
-        while(isOnScreen()){
-            
-            //DO MULTIPLE DRAWS FOR ANIMATION
-            
-        }
-        
-    }
-    
-    func flyingAnimation(){
-        if(isOnScreen()){
-           
-            flyBat(thePos: thePosition)
-            
-            
-        }else{
-            xv = -xv
-            yv = -yv
-            flyBat(thePos: thePosition)
-        }
-        
-        
-    }
-    
-    func update(){
-        
-        /*if(hitCalled){
-            
-            update display of score and damage values for bats
-        
-            hitCalled = false
-        }*/
-        
-    }
-    
-}
-
