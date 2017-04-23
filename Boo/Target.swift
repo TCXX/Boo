@@ -13,13 +13,23 @@ import SpriteKit
 class Target: SKSpriteNode{
 
     static let dicFindType: [String: TargetType] =
-        ["Wood-h": TargetType.init(name: "Wood-h", max: 0.8, destroy: false, gravity: true),
+
+       /* ["Wood-h": TargetType.init(name: "Wood-h", max: 0.8, destroy: false, gravity: true),
          "Wood-v": TargetType.init(name: "Wood-v", max: 0.8, destroy: false, gravity: true),
          "Vampire": TargetType.init(name: "Vampire", max: 3.0, destroy: true, gravity: false),
          "Pumpkin": TargetType.init(name: "Pumpkin", max: 2.0, destroy: true, gravity: true),
          "Bat": TargetType.init(name: "Bat", max: 2.5, destroy: true, gravity: false),
          "Square": TargetType.init(name: "Square", max: 1.0, destroy: false, gravity: true),
-         "Ghost": TargetType.init(name: "Ghost", max: 2.5, destroy: true, gravity: true)]
+         "Ghost": TargetType.init(name: "Ghost", max: 2.5, destroy: true, gravity: true)]*/
+
+        ["Wood-h": TargetType.init(name: "Wood-h", max: 2, destroy: false, gravity: true),
+         "Wood-v": TargetType.init(name: "Wood-v", max: 2, destroy: false, gravity: false),
+         "Vampire": TargetType.init(name: "Vampire", max: 4, destroy: true, gravity: false),
+         "Pumpkin": TargetType.init(name: "Pumpkin", max: 3, destroy: true, gravity: true),
+         "Bat": TargetType.init(name: "Bat", max: 10, destroy: true, gravity: true),
+         "Square": TargetType.init(name: "Square", max: 2, destroy: true, gravity: true),
+         "Ghost": TargetType.init(name: "Ghost", max: 4, destroy: true, gravity: false)]
+
     
     var type: TargetType? = nil
     var damageValue: Double = 0

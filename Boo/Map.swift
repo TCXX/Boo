@@ -31,13 +31,17 @@ class Map {
     }
     
     // get level info from AWS
-    init(currentLevel: Int){
+   init(currentLevel: Int){
 
         let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/WorkingLevels/L\(currentLevel)")
         
         if json == JSON.null {
             randomCreate(hardness: currentLevel)
         }
+
+       
+//        let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/L14")
+
 
         for result in json["Target"].arrayValue{
           
