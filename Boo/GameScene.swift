@@ -140,7 +140,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        if nodeSpeed(node: projectile!) < 1 {
+        if nodeSpeed(node: projectile!) < 3
+            || projectile.position.x > self.frame.maxX || projectile.position.x < self.frame.minX {
             if (delayTimer.isValid == false) {
                 startDelay()
             }
@@ -199,6 +200,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // create given projectile ready to throw
     func setupProjectile (object: Throwable) -> Int {
+        checkGoal()
         let type = object.type
         if type == nil {
             return 0
@@ -236,6 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 node.zPosition = -1
                 dicFindTarget.updateValue(target, forKey: node)
                 node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+                node.physicsBody!.density = 0.33
                 node.physicsBody!.categoryBitMask = GameScene.woodCategory
                 node.physicsBody!.contactTestBitMask = GameScene.throwableCategory
                 node.physicsBody!.affectedByGravity = target.type!.affectByGravity
@@ -413,6 +416,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let vectorX = touchStartingPoint.x - touchCurrentPoint.x
                 let vectorY = touchStartingPoint.y - touchCurrentPoint.y
                 projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectileRadius)
+                projectile.physicsBody!.density = 1
                 projectile.physicsBody!.categoryBitMask = GameScene.throwableCategory
                 projectile.physicsBody!.contactTestBitMask = GameScene.woodCategory
                 

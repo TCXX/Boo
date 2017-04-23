@@ -14,7 +14,7 @@ class Map {
     var targets = [Target]()
     var throwables = [Throwable]()
     
-    var gravity = CGVector(dx: 0, dy: -8)
+    var gravity = CGVector(dx: 0, dy: -6)
     
     // SwiftyJSON helper function
     func getJSON(_ url:String) -> JSON{
