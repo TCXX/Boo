@@ -39,9 +39,6 @@ class Map {
             randomCreate(hardness: currentLevel)
         }
 
-       
-//        let json = getJSON("http://ec2-35-162-97-112.us-west-2.compute.amazonaws.com/~Selamawit/Boo/L14")
-
 
         for result in json["Target"].arrayValue{
           

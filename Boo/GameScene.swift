@@ -47,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     static let rLimit = CGFloat(50)
     
     //user stats 
-    var totalScore = 0; /**Add scores to screen**/
+    //var totalScore = 0; /**Add scores to screen**/
     var numLives = 3;
     
     
