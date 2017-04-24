@@ -11,7 +11,18 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     // game status
-    var currentLevel: Int = 0
+    var currentLevel: Int = 0 {
+        didSet{
+            updateLabels()
+        }
+    }
+    
+    var score = 0 { /**Add scores to screen**/
+        didSet{
+            updateLabels()
+        }
+    }
+    
     var gameStarted = false
     var map: Map?
     
@@ -46,9 +57,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     static let projectileSnapLimit = CGFloat(10)
     static let rLimit = CGFloat(50)
     
-    //user stats 
-    //var totalScore = 0; /**Add scores to screen**/
-    var numLives = 3;
+    // display statistics
+    var scoreLabel: SKLabelNode = SKLabelNode()
+    var levelLabel: SKLabelNode = SKLabelNode()
     
     
     // match types with graphics components
@@ -81,9 +92,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         setBackground()
         setupSlingshot()
+        setupLabels()
         
-        //specify current level
+        //specify game status
         currentLevel = 1
+        score = 0
         
         startGame()
     }
@@ -116,6 +129,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bg.zPosition = -100
         bgLayer.addChild(bg)
 
+    }
+    
+    func setupLabels() {
+        scoreLabel.fontSize = 48
+        scoreLabel.position = CGPoint(x: self.frame.maxX - 180, y: self.frame.maxY - 80)
+        levelLabel.fontSize = 48
+        levelLabel.position = CGPoint(x: self.frame.maxX - 180, y: self.frame.maxY - 160)
+        
+        scoreLayer.addChild(scoreLabel)
+        scoreLayer.addChild(levelLabel)
+    }
+    
+    func updateLabels() {
+        scoreLabel.text = "Score: " + String(score)
+        levelLabel.text = "Level: " + String(currentLevel)
     }
     
     // set up the physics world with gravity
@@ -280,6 +308,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // called when destroy every target in a level
     func isPassed () {
+        score = score + 1000
+        
         removeCurrentMap()
         let pass = SKSpriteNode(imageNamed: "passed.png")
         hintLayer.addChild(pass)
@@ -315,8 +345,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let t = dicFindThrowable[projectile]!
             let damage = Double(nodeSpeed(node: node)) * t.hitImpact + 1.0
             target.decreaseDamageValue(amount: damage)
+            score = score + Int(damage * 3.3)
             node.alpha = CGFloat(target.damageValue)/CGFloat(target.maxDamageValue)
             if target.damageValue == 0 {
+                if target.type!.mustDestroy {
+                    score = score + 500
+                }
+                
                 node.removeFromParent()
                 checkGoal()
             }
