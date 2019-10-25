@@ -2,7 +2,6 @@
 //  TargetType.swift
 //  Boo
 //
-//  Created by XINYI on 4/13/17.
 //  Copyright © 2017 Tianxinxin iOS. All rights reserved.
 //
 
